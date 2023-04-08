@@ -1,6 +1,6 @@
-
-<?php include('header.php'); ?>	
-<?php include('nav-links.php'); ?>	
+{% extends 'base.html.twig' %}
+ {% block body %}
+{{ include('pages/nav-links.html.twig') }}	
 		<section class="gallery-section2">
 			<div class="container">
 				<div id="filters" class="button-group">
@@ -82,4 +82,6 @@
 			</div>
 		</section>
 		<!-- End of Query Section -->
-		<?php include('footer.php'); ?>	
+		{{ include('pages/footer.html.twig') }}
+
+{% endblock %}

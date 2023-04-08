@@ -38,7 +38,7 @@ class MianController extends AbstractController
         return $this->render('pages/events.html.twig');
     }
 
-    #[Route('/', name: 'app_mian')]
+    #[Route('/', name: 'gallery')]
     public function gallery(): Response
     {
         return $this->render('pages/gallery.html.twig');

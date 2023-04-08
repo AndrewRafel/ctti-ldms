@@ -32,25 +32,29 @@
 			<div class="main-header">
 				<div class="container">
 					<div class="logo-wrap" itemprop="logo">
-						<img src="assets/images/logo3.png" style="width: 70px; height: 70px;"alt="Logo Image">
+						<img src="{{ asset('images/logo3.png') }}" style="width: 70px; height: 70px;"alt="Logo Image">
 						<!-- <h1>Education</h1> -->
 					</div>
 					<div class="nav-wrap">
 						<nav class="nav-desktop">
 							<ul class="menu-list">
-								<li><a href="index.php">Home</a></li>
+								<li><a href="{{ path('home') }}">Home</a></li>
 								<li class="menu-parent">Courses
 									<ul class="sub-menu">
-										<li><a href="courses.php">Business & Agriculture</a></li>
-										<li><a href="courses.php">Engineering</a></li>
-
+										<li><a href="{{ path('courses') }}">Business & Agriculture</a></li>
+										<li><a href="{{ path('courses') }}">Engineering</a></li>
+									<!--<	<li class="menu-parent">Child
+											<ul class="sub-menu">
+												<!--<li><a href="">Grand-child</a></li>
+												<li><a href="">Grand-child</a></li>
+											</ul> -->
 										</li>
 									</ul>
 								</li>
-								<li><a href="events.php">News</a></li>
-								<li><a href="about.php">About</a></li>
-								<li><a href="gallery.php">Gallery</a></li>
-								<li><a href="contact.php">Contact</a></li>
+								<li><a href="{{ path('events') }}">News</a></li>
+								<li><a href="{{ path('about') }}">About</a></li>
+								<li><a href="{{ path('gallery') }}">Gallery</a></li>
+								<li><a href="{{ path('contact') }}">Contact</a></li>
 							</ul>
 						</nav>
 						<div id="bar">

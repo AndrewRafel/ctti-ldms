@@ -1,6 +1,6 @@
-<?php include('header.php'); ?>	
-<?php include('nav-links.php'); ?>	
-
+{% extends 'base.html.twig' %}
+ {% block body %}
+{{ include('pages/nav-links.html.twig') }}
 <div class="page-heading">
 			<div class="container">
 				<h2>popular courses</h2>
@@ -71,4 +71,6 @@
 				<p>Any Queries? Ask us a question at<a href="tel:+260-977-370-130"><i class="fas fa-phone"></i> +260-977-370-130</a></p>
 			</div>
 		</section>
-		<?php include('footer.php'); ?>	
+			{{ include('pages/footer.html.twig') }}
+
+{% endblock %}
