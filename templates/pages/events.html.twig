@@ -1,5 +1,6 @@
-<?php include('header.php'); ?>	
-<?php include('nav-links.php'); ?>	
+{% extends 'base.html.twig' %}
+ {% block body %}
+{{ include('pages/nav-links.html.twig') }}
 <section class="page-heading">
 			<div class="container">
 				<h2>latest news</h2>
@@ -10,7 +11,7 @@
 				<div class="owl-two owl-carousel">
 					<div class="news-wrap" itemprop="event">
 						<div class="news-img-wrap" itemprop="image">
-							<img src="assets/images/students1.jpg" alt="Latest News Images">
+							<img src="{{ asset('images/front.jpg')}}" alt="Latest News Images">
 						</div>
 						<div class="news-detail" itemprop="description">
 							<a href=""><h1>April 2023 EXAMMINATION</h1></a>
@@ -22,7 +23,7 @@
 
 					<div class="news-wrap" itemprop="event">
 						<div class="news-img-wrap" itemprop="image">
-							<img src="assets/images/students2.jpg" alt="Latest News Images">
+							<img src="{{ asset('images/front.jpg')}}" alt="Latest News Images">
 						</div>
 						<div class="news-detail" itemprop="description">
 							<a href=""><h1></h1></a>
@@ -41,4 +42,5 @@
 			</div>
 		</section>
 		<!-- End of Query Section -->
-		<?php include('footer.php'); ?>	
+		{{ include('pages/footer.html.twig') }}
+		{% endblock %}
