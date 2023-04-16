@@ -37,9 +37,13 @@ class Program
     #[ORM\Column(type: Types::BIGINT)]
     private ?string $program_cost = null;
 
+    #[ORM\OneToMany(mappedBy: 'program', targetEntity: Faculty::class)]
+    private Collection $faculty_name;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->faculty_name = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -145,6 +149,36 @@ class Program
     public function setProgramCost(string $program_cost): self
     {
         $this->program_cost = $program_cost;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Faculty>
+     */
+    public function getFacultyName(): Collection
+    {
+        return $this->faculty_name;
+    }
+
+    public function addFacultyName(Faculty $facultyName): self
+    {
+        if (!$this->faculty_name->contains($facultyName)) {
+            $this->faculty_name->add($facultyName);
+            $facultyName->setProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFacultyName(Faculty $facultyName): self
+    {
+        if ($this->faculty_name->removeElement($facultyName)) {
+            // set the owning side to null (unless already changed)
+            if ($facultyName->getProgram() === $this) {
+                $facultyName->setProgram(null);
+            }
+        }
 
         return $this;
     }

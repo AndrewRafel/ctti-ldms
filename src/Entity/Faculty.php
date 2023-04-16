@@ -24,6 +24,9 @@ class Faculty
     #[ORM\OneToMany(mappedBy: 'faculty_name', targetEntity: Student::class)]
     private Collection $students;
 
+    #[ORM\ManyToOne(inversedBy: 'faculty_name')]
+    private ?Program $program = null;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -84,6 +87,18 @@ class Faculty
                 $student->setFacultyName(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getProgram(): ?Program
+    {
+        return $this->program;
+    }
+
+    public function setProgram(?Program $program): self
+    {
+        $this->program = $program;
 
         return $this;
     }

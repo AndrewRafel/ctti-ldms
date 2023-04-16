@@ -2,60 +2,117 @@
 
 namespace App\Controller;
 
+use App\Entity\News;
 use App\Entity\User;
+use App\Entity\Faculty;
+use App\Entity\Program;
 use App\Entity\Student;
+use App\Form\StudentType;
+use App\Form\FacultyType;
+use App\Form\NewsType;
+use App\Form\UserType;
+use App\Form\ProgramType;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+use function PHPSTORM_META\type;
+
 class AdminController extends AbstractController
 {
-
-    #[Route('/admin/login', name: 'sign-in')]
+    #[Route('/admin/login', name: 'dashboard')]
     public function dashboard(): Response
     {
-        return $this->render('admin/login.html.twig');
+        return $this->render('admin/dashboard.html.twig');
     }
 
-    #[Route('/admin/add_user', name: 'user')]
-    public function createProgram(EntityManagerInterface $entityManager): Response
+    #[Route('/admin/tables', name: 'tables')]
+    public function Tables(): Response
     {
-        $admin1 = new User();
-        $admin1->setUserId('12345');
-        $admin1->setEmail('andrewbanda7@gmail.com');
-        $admin1->setNrc('620621/52/1');
-        $admin1->setPassword('Andreas@3000');
-
-        // tell Doctrine you want to (eventually) save the Product (no queries yet)
-        $entityManager->persist($admin1);
-
-        // actually executes the queries (i.e. the INSERT query)
-        $entityManager->flush();
-
-        return new Response('Saved new product with id '.$admin1->getId());
+        return $this->render('admin/tables.html.twig');
     }
 
-    #[Route('/product', name: 'create_product')]
-    public function createProduct(ValidatorInterface $validator): Response
+    #[Route('/admin/add_user', name: 'add_user')]
+    public function createUser(EntityManagerInterface $entityManager, Request $request): Response
     {
-        $product = new User();
-        // This will trigger an error: the column isn't nullable in the database
-        $product->setUserId('');
-        // This will trigger a type mismatch error: an integer is expected
-        $product->setEmail('1999');
-
-        // ...
-
-        $errors = $validator->validate($product);
-        if (count($errors) > 0) {
-            return new Response((string) $errors, 400);
+        $user=new User();
+        $form= $this->createForm(type:UserType::class, data:$user);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($user);
+            $entityManager->flush();
+            dump($request);
         }
-
-        // ...
+        return $this->render('admin/create_user.html.twig', ['form'=>$form->createView()]);
     }
 
+    #[Route('/admin/add_section', name: 'add_section')]
+    public function createFaculty(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $section=new Faculty();
+        $form= $this->createForm(type:FacultyType::class, data:$section);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($section);
+            $entityManager->flush();
+            dump($request);
+        }
+        return $this->render('admin/create_section.html.twig', ['form'=>$form->createView()]);
+
+    }
+
+    #[Route('/admin/add_news', name: 'add_news')]
+    public function createNews(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $news=new News();
+        $form= $this->createForm(type:NewsType::class,data:$news);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($news);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_news.html.twig', ['form'=>$form->createView()]);
+
+    }
+
+    #[Route('/admin/add_program', name: 'add_program')]
+    public function createProgram(EntityManagerInterface $entityManager, Request $request): Response
+    {
+        $program=new Program();
+        $form= $this->createForm(type:ProgramType::class,data:$program);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($program);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_program.html.twig', ['form'=>$form->createView()]);
+
+    }
+    #[Route('/admin/add_student', name: 'add_student')]
+    public function createStudent(EntityManagerInterface $entityManager): Response
+    {
+        $student=new Student();
+        $faculty=new Faculty();
+        $program=new Program();
+        $form= $this->createForm(type:StudentType::class,data:$student);
+         
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($student);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_student.html.twig', ['form'=>$form->createView()]);
+
+     
+    }
+    
     #[Route('/admin/user/{id}', name: 'user_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response
     {
@@ -73,11 +130,21 @@ class AdminController extends AbstractController
         // return $this->render('product/show.html.twig', ['product' => $product]);
     }
     
-    #[Route('/admin/remove_user', name: 'user_remove')]
-    public function removeUser(EntityManagerInterface $entityManager)
+    #[Route('/admin/remove_user/{id}', name: 'user_remove')]
+    public function removeUser(EntityManagerInterface $entityManager, User $user)
     {
         $user=new User();
         $entityManager->remove($user);
         $entityManager->flush();
+        return $this->redirect($this->generateUrl(route:'dashboard'));
     }
+
+    #[Route('/admin/remove_news', name: 'delete_event')]
+    public function removeNews(EntityManagerInterface $entityManager)
+    {
+    $news=new News();
+    $entityManager->remove($news);
+    $entityManager->flush();
+    return $this->redirect($this->generateUrl(route:'dashboard'));
+   }
 }
