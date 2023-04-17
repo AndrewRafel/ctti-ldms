@@ -23,32 +23,11 @@ use function PHPSTORM_META\type;
 
 class AdminController extends AbstractController
 {
-    #[Route('/admin/login', name: 'dashboard')]
+    #[Route('/admin', name: 'dashboard')]
     public function dashboard(): Response
     {
-        return $this->render('admin/dashboard.html.twig');
-    }
-
-    #[Route('/admin/tables', name: 'tables')]
-    public function Tables(): Response
-    {
-        return $this->render('admin/tables.html.twig');
-    }
-
-    #[Route('/admin/add_user', name: 'add_user')]
-    public function createUser(EntityManagerInterface $entityManager, Request $request): Response
-    {
-        $user=new User();
-        $form= $this->createForm(type:UserType::class, data:$user);
-        $form->handleRequest($request);
-        if($form->isSubmitted())
-        {
-            $entityManager->persist($user);
-            $entityManager->flush();
-            dump($request);
-        }
-        return $this->render('admin/create_user.html.twig', ['form'=>$form->createView()]);
-    }
+    return $this->render('admin/dashboard.html.twig');
+}
 
     #[Route('/admin/add_section', name: 'add_section')]
     public function createFaculty(EntityManagerInterface $entityManager, Request $request): Response
