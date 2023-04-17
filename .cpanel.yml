@@ -1,12 +1,13 @@
 deployment:
   tasks:
     - export DEPLOYPATH=/home/cttiac/public_html/
-    - /bin/cp -R admin $DEPLOYPATH
-    - /bin/cp -R assets $DEPLOYPATH
-    - /bin/cp -R css $DEPLOYPATH
-    - /bin/cp -R images $DEPLOYPATH
-    - /bin/cp -R js $DEPLOYPATH
-    - /bin/cp -R webfonts $DEPLOYPATH
-    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp -R /public/admin $DEPLOYPATH
+    - /bin/cp -R /public/assets $DEPLOYPATH
+    - /bin/cp -R /public/css $DEPLOYPATH
+    - /bin/cp -R /public/images $DEPLOYPATH
+    - /bin/cp -R /public/js $DEPLOYPATH
+    - /bin/cp -R /public/webfonts $DEPLOYPATH
+    - /bin/cp /public/index.php $DEPLOYPATH
     
+
     
