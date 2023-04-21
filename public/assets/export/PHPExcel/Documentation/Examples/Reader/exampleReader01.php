@@ -27,13 +27,13 @@ include 'PHPExcel/IOFactory.php';
 
 
 $inputFileName = './sampleData/example1.xls';
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory to identify the format<br />';
 $objPHPExcel = PHPExcel_IOFactory::load($inputFileName);
 
 
 echo '<hr />';
 
-$sheetData = $objPHPExcel->getActiveSheet()->toArray(null,true,true,true);
+$sheetData = $objPHPExcel->getActiveSheet()->toArray(null, true, true, true);
 var_dump($sheetData);
 
 

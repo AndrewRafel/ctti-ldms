@@ -433,10 +433,10 @@ class Ods extends BaseReader
                             //          ($rowData it's not used at all and I'm not sure that PHPExcel
                             //          has an API for this)
 
-//                            foreach ($rowData as $keyRowData => $cellData) {
-//                                $rowData = $cellData;
-//                                break;
-//                            }
+                            //                            foreach ($rowData as $keyRowData => $cellData) {
+                            //                                $rowData = $cellData;
+                            //                                break;
+                            //                            }
                             break;
                         case 'table-row':
                             if ($childNode->hasAttributeNS($tableNs, 'number-rows-repeated')) {
@@ -479,7 +479,7 @@ class Ods extends BaseReader
                                         $spreadsheet->getActiveSheet()
                                             ->getComment($columnID . $rowID)
                                             ->setText($this->parseRichText($text));
-//                                                                    ->setAuthor( $author )
+                                        //                                                                    ->setAuthor( $author )
                                     }
                                 }
 

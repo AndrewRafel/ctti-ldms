@@ -592,7 +592,7 @@ class PHPExcel_Style extends PHPExcel_Style_Supervisor implements PHPExcel_IComp
             $styleArray = array('quotePrefix' => $pValue);
             $this->getActiveSheet()->getStyle($this->getSelectedCells())->applyFromArray($styleArray);
         } else {
-            $this->quotePrefix = (boolean) $pValue;
+            $this->quotePrefix = (bool) $pValue;
         }
         return $this;
     }
@@ -617,7 +617,7 @@ class PHPExcel_Style extends PHPExcel_Style_Supervisor implements PHPExcel_IComp
             $this->numberFormat->getHashCode() .
             $hashConditionals .
             $this->protection->getHashCode() .
-            ($this->quotePrefix  ? 't' : 'f') .
+            ($this->quotePrefix ? 't' : 'f') .
             __CLASS__
         );
     }

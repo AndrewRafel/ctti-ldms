@@ -32,7 +32,7 @@ class PHPExcel_Cell
      *
      *  @var  string
      */
-    const DEFAULT_RANGE = 'A1:A1';
+    public const DEFAULT_RANGE = 'A1:A1';
 
     /**
      *    Value binder to use
@@ -267,14 +267,14 @@ class PHPExcel_Cell
      */
     public function getCalculatedValue($resetLog = true)
     {
-//echo 'Cell '.$this->getCoordinate().' value is a '.$this->dataType.' with a value of '.$this->getValue().PHP_EOL;
+        //echo 'Cell '.$this->getCoordinate().' value is a '.$this->dataType.' with a value of '.$this->getValue().PHP_EOL;
         if ($this->dataType == PHPExcel_Cell_DataType::TYPE_FORMULA) {
             try {
-//echo 'Cell value for '.$this->getCoordinate().' is a formula: Calculating value'.PHP_EOL;
+                //echo 'Cell value for '.$this->getCoordinate().' is a formula: Calculating value'.PHP_EOL;
                 $result = PHPExcel_Calculation::getInstance(
                     $this->getWorksheet()->getParent()
                 )->calculateCellValue($this, $resetLog);
-//echo $this->getCoordinate().' calculation result is '.$result.PHP_EOL;
+                //echo $this->getCoordinate().' calculation result is '.$result.PHP_EOL;
                 //    We don't yet handle array returns
                 if (is_array($result)) {
                     while (is_array($result)) {
@@ -283,10 +283,10 @@ class PHPExcel_Cell
                 }
             } catch (PHPExcel_Exception $ex) {
                 if (($ex->getMessage() === 'Unable to access External Workbook') && ($this->calculatedValue !== null)) {
-//echo 'Returning fallback value of '.$this->calculatedValue.' for cell '.$this->getCoordinate().PHP_EOL;
+                    //echo 'Returning fallback value of '.$this->calculatedValue.' for cell '.$this->getCoordinate().PHP_EOL;
                     return $this->calculatedValue; // Fallback for calculations referencing external files.
                 }
-//echo 'Calculation Exception: '.$ex->getMessage().PHP_EOL;
+                //echo 'Calculation Exception: '.$ex->getMessage().PHP_EOL;
                 $result = '#N/A';
                 throw new PHPExcel_Calculation_Exception(
                     $this->getWorksheet()->getTitle().'!'.$this->getCoordinate().' -> '.$ex->getMessage()
@@ -294,16 +294,16 @@ class PHPExcel_Cell
             }
 
             if ($result === '#Not Yet Implemented') {
-//echo 'Returning fallback value of '.$this->calculatedValue.' for cell '.$this->getCoordinate().PHP_EOL;
+                //echo 'Returning fallback value of '.$this->calculatedValue.' for cell '.$this->getCoordinate().PHP_EOL;
                 return $this->calculatedValue; // Fallback if calculation engine does not support the formula.
             }
 //echo 'Returning calculated value of '.$result.' for cell '.$this->getCoordinate().PHP_EOL;
             return $result;
         } elseif ($this->value instanceof PHPExcel_RichText) {
-//        echo 'Cell value for '.$this->getCoordinate().' is rich text: Returning data value of '.$this->value.'<br />';
+            //        echo 'Cell value for '.$this->getCoordinate().' is rich text: Returning data value of '.$this->value.'<br />';
             return $this->value->getPlainText();
         }
-//        echo 'Cell value for '.$this->getCoordinate().' is not a formula: Returning data value of '.$this->value.'<br />';
+        //        echo 'Cell value for '.$this->getCoordinate().' is not a formula: Returning data value of '.$this->value.'<br />';
         return $this->value;
     }
 
@@ -496,7 +496,7 @@ class PHPExcel_Cell
      */
     public function isInMergeRange()
     {
-        return (boolean) $this->getMergeRange();
+        return (bool) $this->getMergeRange();
     }
 
     /**
@@ -571,7 +571,7 @@ class PHPExcel_Cell
         // Verify if cell is in range
         return (($rangeStart[0] <= $myColumn) && ($rangeEnd[0] >= $myColumn) &&
                 ($rangeStart[1] <= $myRow) && ($rangeEnd[1] >= $myRow)
-               );
+        );
     }
 
     /**

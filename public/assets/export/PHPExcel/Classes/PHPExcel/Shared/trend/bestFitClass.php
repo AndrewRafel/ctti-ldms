@@ -381,11 +381,11 @@ class PHPExcel_Best_Fit
         }
 
         // calculate slope
-//        $this->slope = (($this->valueCount * $xy_sum) - ($x_sum * $y_sum)) / (($this->valueCount * $xx_sum) - ($x_sum * $x_sum));
+        //        $this->slope = (($this->valueCount * $xy_sum) - ($x_sum * $y_sum)) / (($this->valueCount * $xx_sum) - ($x_sum * $x_sum));
         $this->slope = $mBase / $mDivisor;
 
         // calculate intersect
-//        $this->intersect = ($y_sum - ($this->slope * $x_sum)) / $this->valueCount;
+        //        $this->intersect = ($y_sum - ($this->slope * $x_sum)) / $this->valueCount;
         if ($const) {
             $this->intersect = $meanY - ($this->slope * $meanX);
         } else {

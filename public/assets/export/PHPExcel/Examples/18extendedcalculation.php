@@ -27,11 +27,11 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -56,8 +56,8 @@ $objPHPExcel->getActiveSheet()->setCellValue('B1', 'Range 1');
 $objPHPExcel->getActiveSheet()->setCellValue('B2', 2);
 $objPHPExcel->getActiveSheet()->setCellValue('B3', 8);
 $objPHPExcel->getActiveSheet()->setCellValue('B4', 10);
-$objPHPExcel->getActiveSheet()->setCellValue('B5', True);
-$objPHPExcel->getActiveSheet()->setCellValue('B6', False);
+$objPHPExcel->getActiveSheet()->setCellValue('B5', true);
+$objPHPExcel->getActiveSheet()->setCellValue('B6', false);
 $objPHPExcel->getActiveSheet()->setCellValue('B7', 'Text String');
 $objPHPExcel->getActiveSheet()->setCellValue('B9', '22');
 $objPHPExcel->getActiveSheet()->setCellValue('B10', 4);

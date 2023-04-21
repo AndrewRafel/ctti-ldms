@@ -27,11 +27,11 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -47,12 +47,12 @@ $objPHPExcel = new PHPExcel();
 // Set document properties
 echo date('H:i:s') , " Set document properties" , EOL;
 $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-	->setLastModifiedBy("Maarten Balliauw")
-	->setTitle("Office 2007 XLSX Test Document")
-	->setSubject("Office 2007 XLSX Test Document")
-	->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-	->setKeywords("office 2007 openxml php")
-	->setCategory("Test result file");
+    ->setLastModifiedBy("Maarten Balliauw")
+    ->setTitle("Office 2007 XLSX Test Document")
+    ->setSubject("Office 2007 XLSX Test Document")
+    ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+    ->setKeywords("office 2007 openxml php")
+    ->setCategory("Test result file");
 
 
 // Create a first sheet
@@ -71,14 +71,14 @@ $objPHPExcel->getActiveSheet()->setCellValue('A1', "Cell B3 and B5 contain data 
     ->setCellValue('D5', "Item #4")
     ->setCellValue('D6', "Item #5")
     ->setCellValue('A9', 'Text:')
-    ;
+;
 
 
 // Set data validation
 echo date('H:i:s') , " Set data validation" , EOL;
 $objValidation = $objPHPExcel->getActiveSheet()->getCell('B3')->getDataValidation();
-$objValidation->setType( PHPExcel_Cell_DataValidation::TYPE_WHOLE );
-$objValidation->setErrorStyle( PHPExcel_Cell_DataValidation::STYLE_STOP );
+$objValidation->setType(PHPExcel_Cell_DataValidation::TYPE_WHOLE);
+$objValidation->setErrorStyle(PHPExcel_Cell_DataValidation::STYLE_STOP);
 $objValidation->setAllowBlank(true);
 $objValidation->setShowInputMessage(true);
 $objValidation->setShowErrorMessage(true);
@@ -90,8 +90,8 @@ $objValidation->setFormula1(10);
 $objValidation->setFormula2(20);
 
 $objValidation = $objPHPExcel->getActiveSheet()->getCell('B5')->getDataValidation();
-$objValidation->setType( PHPExcel_Cell_DataValidation::TYPE_LIST );
-$objValidation->setErrorStyle( PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+$objValidation->setType(PHPExcel_Cell_DataValidation::TYPE_LIST);
+$objValidation->setErrorStyle(PHPExcel_Cell_DataValidation::STYLE_INFORMATION);
 $objValidation->setAllowBlank(false);
 $objValidation->setShowInputMessage(true);
 $objValidation->setShowErrorMessage(true);
@@ -103,8 +103,8 @@ $objValidation->setPrompt('Please pick a value from the drop-down list.');
 $objValidation->setFormula1('"Item A,Item B,Item C"');	// Make sure to put the list items between " and "  !!!
 
 $objValidation = $objPHPExcel->getActiveSheet()->getCell('B7')->getDataValidation();
-$objValidation->setType( PHPExcel_Cell_DataValidation::TYPE_LIST );
-$objValidation->setErrorStyle( PHPExcel_Cell_DataValidation::STYLE_INFORMATION );
+$objValidation->setType(PHPExcel_Cell_DataValidation::TYPE_LIST);
+$objValidation->setErrorStyle(PHPExcel_Cell_DataValidation::STYLE_INFORMATION);
 $objValidation->setAllowBlank(false);
 $objValidation->setShowInputMessage(true);
 $objValidation->setShowErrorMessage(true);
@@ -116,8 +116,8 @@ $objValidation->setPrompt('Please pick a value from the drop-down list.');
 $objValidation->setFormula1('$D$2:$D$6');	// Make sure NOT to put a range of cells or a formula between " and "  !!!
 
 $objValidation = $objPHPExcel->getActiveSheet()->getCell('B9')->getDataValidation();
-$objValidation->setType( PHPExcel_Cell_DataValidation::TYPE_TEXTLENGTH );
-$objValidation->setErrorStyle( PHPExcel_Cell_DataValidation::STYLE_STOP );
+$objValidation->setType(PHPExcel_Cell_DataValidation::TYPE_TEXTLENGTH);
+$objValidation->setErrorStyle(PHPExcel_Cell_DataValidation::STYLE_STOP);
 $objValidation->setAllowBlank(true);
 $objValidation->setShowInputMessage(true);
 $objValidation->setShowErrorMessage(true);
@@ -142,7 +142,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xls', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 

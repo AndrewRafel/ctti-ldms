@@ -36,13 +36,13 @@ class Parser
     //         *:/\?[]
     // Moreover, there are valid sheet title characters that cannot occur in unquoted form (there may be more?)
     // +-% '^&<>=,;#()"{}
-    const REGEX_SHEET_TITLE_UNQUOTED = '[^\*\:\/\\\\\?\[\]\+\-\% \\\'\^\&\<\>\=\,\;\#\(\)\"\{\}]+';
+    public const REGEX_SHEET_TITLE_UNQUOTED = '[^\*\:\/\\\\\?\[\]\+\-\% \\\'\^\&\<\>\=\,\;\#\(\)\"\{\}]+';
 
     // Sheet title in quoted form (without surrounding quotes)
     // Invalid sheet title characters cannot occur in the sheet title:
     // *:/\?[]                    (usual invalid sheet title characters)
     // Single quote is represented as a pair ''
-    const REGEX_SHEET_TITLE_QUOTED = '(([^\*\:\/\\\\\?\[\]\\\'])+|(\\\'\\\')+)+';
+    public const REGEX_SHEET_TITLE_QUOTED = '(([^\*\:\/\\\\\?\[\]\\\'])+|(\\\'\\\')+)+';
 
     /**
      * The index of the character we are currently looking at.
@@ -518,10 +518,10 @@ class Parser
         } elseif (preg_match('/^#[A-Z0\\/]{3,5}[!?]{1}$/', $token) or $token == '#N/A') {
             return $this->convertError($token);
         // commented so argument number can be processed correctly. See toReversePolish().
-        /*elseif (preg_match("/[A-Z0-9\xc0-\xdc\.]+/", $token))
-        {
-            return($this->convertFunction($token, $this->_func_args));
-        }*/
+            /*elseif (preg_match("/[A-Z0-9\xc0-\xdc\.]+/", $token))
+            {
+                return($this->convertFunction($token, $this->_func_args));
+            }*/
         // if it's an argument, ignore the token (the argument remains)
         } elseif ($token == 'arg') {
             return '';

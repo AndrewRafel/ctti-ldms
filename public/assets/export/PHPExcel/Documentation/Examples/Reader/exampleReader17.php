@@ -33,7 +33,7 @@ $inputFileType = 'Excel5';
 //	$inputFileType = 'Gnumeric';
 $inputFileName = './sampleData/example1.xls';
 
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 
 
@@ -43,7 +43,7 @@ $worksheetNames = $objReader->listWorksheetNames($inputFileName);
 
 echo 'There are ',count($worksheetNames),' worksheet',((count($worksheetNames) == 1) ? '' : 's'),' in the workbook<br /><br />';
 foreach($worksheetNames as $worksheetName) {
-	echo $worksheetName,'<br />';
+    echo $worksheetName,'<br />';
 }
 
 

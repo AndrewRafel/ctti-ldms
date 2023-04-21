@@ -24,9 +24,11 @@ use function PHPSTORM_META\type;
 class AdminController extends AbstractController
 {
     #[Route('/admin', name: 'dashboard')]
-    public function dashboard(): Response
+    public function dashboard(EntityManagerInterface $entityManager): Response
     {
-    return $this->render('admin/dashboard.html.twig');
+     $user = $entityManager->getRepository(User::class);
+
+    return $this->render('admin/dashboard.html.twig',['currentUser'=>$user]);
 }
 
     #[Route('/admin/add_section', name: 'add_section')]
@@ -78,8 +80,6 @@ class AdminController extends AbstractController
     public function createStudent(EntityManagerInterface $entityManager): Response
     {
         $student=new Student();
-        $faculty=new Faculty();
-        $program=new Program();
         $form= $this->createForm(type:StudentType::class,data:$student);
          
         if($form->isSubmitted())

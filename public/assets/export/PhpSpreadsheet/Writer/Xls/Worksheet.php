@@ -263,7 +263,7 @@ class Worksheet extends BIFFwriter
         $this->firstColumnIndex = Coordinate::columnIndexFromString($minC);
         $this->lastColumnIndex = Coordinate::columnIndexFromString($maxC);
 
-//        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
+        //        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
         if ($this->lastColumnIndex > 255) {
             $this->lastColumnIndex = 255;
         }
@@ -4120,7 +4120,7 @@ class Worksheet extends BIFFwriter
 
                     break;
                 default:
-                          $colorIdxBg = 0x41;
+                    $colorIdxBg = 0x41;
 
                     break;
             }
@@ -4351,7 +4351,7 @@ class Worksheet extends BIFFwriter
 
                     break;
                 default:
-                          $colorIdxFg = 0x40;
+                    $colorIdxFg = 0x40;
 
                     break;
             }

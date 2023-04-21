@@ -57,14 +57,14 @@ class PHPExcel_Calculation_MathTrig
             rsort($factorArray);
             return $factorArray;
         } else {
-            return array((integer) $value);
+            return array((int) $value);
         }
     }
 
 
     private static function romanCut($num, $n)
     {
-        return ($num - ($num % $n ) ) / $n;
+        return ($num - ($num % $n)) / $n;
     }
 
 
@@ -141,7 +141,7 @@ class PHPExcel_Calculation_MathTrig
         }
 
         if ((is_numeric($number)) && (is_numeric($significance))) {
-            if (($number == 0.0 ) || ($significance == 0.0)) {
+            if (($number == 0.0) || ($significance == 0.0)) {
                 return 0.0;
             } elseif (self::SIGN($number) == self::SIGN($significance)) {
                 return ceil($number / $significance) * $significance;
@@ -485,7 +485,7 @@ class PHPExcel_Calculation_MathTrig
             }
         }
         foreach ($allPoweredFactors as $allPoweredFactor) {
-            $returnValue *= (integer) $allPoweredFactor;
+            $returnValue *= (int) $allPoweredFactor;
         }
         return $returnValue;
     }
@@ -933,11 +933,11 @@ class PHPExcel_Calculation_MathTrig
     public static function ROMAN($aValue, $style = 0)
     {
         $aValue    = PHPExcel_Calculation_Functions::flattenSingleValue($aValue);
-        $style    = (is_null($style))    ? 0 :    (integer) PHPExcel_Calculation_Functions::flattenSingleValue($style);
+        $style    = (is_null($style)) ? 0 : (int) PHPExcel_Calculation_Functions::flattenSingleValue($style);
         if ((!is_numeric($aValue)) || ($aValue < 0) || ($aValue >= 4000)) {
             return PHPExcel_Calculation_Functions::VALUE();
         }
-        $aValue = (integer) $aValue;
+        $aValue = (int) $aValue;
         if ($aValue == 0) {
             return '';
         }
@@ -1220,24 +1220,25 @@ class PHPExcel_Calculation_MathTrig
     }
 
 
- 	/**
-	 *	SUMIFS
-	 *
-	 *	Counts the number of cells that contain numbers within the list of arguments
-	 *
-	 *	Excel Function:
-	 *		SUMIFS(value1[,value2[, ...]],condition)
-	 *
-	 *	@access	public
-	 *	@category Mathematical and Trigonometric Functions
-	 *	@param	mixed		$arg,...		Data values
-	 *	@param	string		$condition		The criteria that defines which cells will be summed.
-	 *	@return	float
-	 */
-	public static function SUMIFS() {
-		$arrayList = func_get_args();
+    /**
+     *	SUMIFS
+     *
+     *	Counts the number of cells that contain numbers within the list of arguments
+     *
+     *	Excel Function:
+     *		SUMIFS(value1[,value2[, ...]],condition)
+     *
+     *	@access	public
+     *	@category Mathematical and Trigonometric Functions
+     *	@param	mixed		$arg,...		Data values
+     *	@param	string		$condition		The criteria that defines which cells will be summed.
+     *	@return	float
+     */
+    public static function SUMIFS()
+    {
+        $arrayList = func_get_args();
 
-		$sumArgs = PHPExcel_Calculation_Functions::flattenArray(array_shift($arrayList));
+        $sumArgs = PHPExcel_Calculation_Functions::flattenArray(array_shift($arrayList));
 
         while (count($arrayList) > 0) {
             $aArgsArray[] = PHPExcel_Calculation_Functions::flattenArray(array_shift($arrayList));
@@ -1275,9 +1276,9 @@ class PHPExcel_Calculation_MathTrig
             }
         }
 
-		// Return
-		return array_sum($sumArgs);
-	}
+        // Return
+        return array_sum($sumArgs);
+    }
 
 
     /**

@@ -27,10 +27,10 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -77,23 +77,23 @@ echo date('H:i:s') , " File written to " , str_replace('.php', '.htm', pathinfo(
 // Export to PDF (.pdf)
 echo date('H:i:s') , " Write to PDF format" , EOL;
 try {
-	if (!PHPExcel_Settings::setPdfRenderer(
-		$rendererName,
-		$rendererLibraryPath
-	)) {
-		echo (
-			'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
-			EOL .
-			'at the top of this script as appropriate for your directory structure' .
-			EOL
-		);
-	} else {
-		$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
-		$objWriter->save(str_replace('.php', '.pdf', __FILE__));
-		echo date('H:i:s') , " File written to " , str_replace('.php', '.pdf', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-	}
+    if (!PHPExcel_Settings::setPdfRenderer(
+        $rendererName,
+        $rendererLibraryPath
+    )) {
+        echo(
+            'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
+            EOL .
+            'at the top of this script as appropriate for your directory structure' .
+            EOL
+        );
+    } else {
+        $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'PDF');
+        $objWriter->save(str_replace('.php', '.pdf', __FILE__));
+        echo date('H:i:s') , " File written to " , str_replace('.php', '.pdf', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
+    }
 } catch (Exception $e) {
-	echo date('H:i:s') , ' EXCEPTION: ', $e->getMessage() , EOL;
+    echo date('H:i:s') , ' EXCEPTION: ', $e->getMessage() , EOL;
 }
 
 // Remove first two rows with field headers before exporting to CSV

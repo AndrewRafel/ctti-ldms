@@ -32,10 +32,9 @@ require_once PHPEXCEL_ROOT . 'PHPExcel/Shared/PCLZip/pclzip.lib.php';
  */
 class PHPExcel_Shared_ZipArchive
 {
-
     /**    constants */
-    const OVERWRITE = 'OVERWRITE';
-    const CREATE    = 'CREATE';
+    public const OVERWRITE = 'OVERWRITE';
+    public const CREATE    = 'CREATE';
 
 
     /**
@@ -150,8 +149,9 @@ class PHPExcel_Shared_ZipArchive
 
         return $contents;
     }
-    
-    public function getFromIndex($index) {
+
+    public function getFromIndex($index)
+    {
         $extracted = $this->zip->extractByIndex($index, PCLZIP_OPT_EXTRACT_AS_STRING);
         $contents = '';
         if ((is_array($extracted)) && ($extracted != 0)) {

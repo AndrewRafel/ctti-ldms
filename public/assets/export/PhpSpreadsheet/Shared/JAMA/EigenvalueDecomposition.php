@@ -489,7 +489,7 @@ class EigenvalueDecomposition
                         $this->V[$i][$n - 1] = $q * $z + $p * $this->V[$i][$n];
                         $this->V[$i][$n] = $q * $this->V[$i][$n] - $p * $z;
                     }
-                    // Complex pair
+                // Complex pair
                 } else {
                     $this->d[$n - 1] = $x + $p;
                     $this->d[$n] = $x + $p;
@@ -663,7 +663,7 @@ class EigenvalueDecomposition
                             } else {
                                 $this->H[$i][$n] = -$r / ($eps * $norm);
                             }
-                            // Solve real equations
+                        // Solve real equations
                         } else {
                             $x = $this->H[$i][$i + 1];
                             $y = $this->H[$i + 1][$i];
@@ -685,7 +685,7 @@ class EigenvalueDecomposition
                         }
                     }
                 }
-                // Complex vector
+            // Complex vector
             } elseif ($q < 0) {
                 $l = $n - 1;
                 // Last vector component imaginary so matrix is triangular

@@ -28,18 +28,18 @@
 class PHPExcel_Chart_Legend
 {
     /** Legend positions */
-    const xlLegendPositionBottom = -4107;    //    Below the chart.
-    const xlLegendPositionCorner = 2;        //    In the upper right-hand corner of the chart border.
-    const xlLegendPositionCustom = -4161;    //    A custom position.
-    const xlLegendPositionLeft   = -4131;    //    Left of the chart.
-    const xlLegendPositionRight  = -4152;    //    Right of the chart.
-    const xlLegendPositionTop    = -4160;    //    Above the chart.
+    public const xlLegendPositionBottom = -4107;    //    Below the chart.
+    public const xlLegendPositionCorner = 2;        //    In the upper right-hand corner of the chart border.
+    public const xlLegendPositionCustom = -4161;    //    A custom position.
+    public const xlLegendPositionLeft   = -4131;    //    Left of the chart.
+    public const xlLegendPositionRight  = -4152;    //    Right of the chart.
+    public const xlLegendPositionTop    = -4160;    //    Above the chart.
 
-    const POSITION_RIGHT    = 'r';
-    const POSITION_LEFT     = 'l';
-    const POSITION_BOTTOM   = 'b';
-    const POSITION_TOP      = 't';
-    const POSITION_TOPRIGHT = 'tr';
+    public const POSITION_RIGHT    = 'r';
+    public const POSITION_LEFT     = 'l';
+    public const POSITION_BOTTOM   = 'b';
+    public const POSITION_TOP      = 't';
+    public const POSITION_TOPRIGHT = 'tr';
 
     private static $positionXLref = array(
         self::xlLegendPositionBottom => self::POSITION_BOTTOM,

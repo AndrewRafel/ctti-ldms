@@ -21,7 +21,7 @@ use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalculationException;
  */
 class QRDecomposition
 {
-    const MATRIX_RANK_EXCEPTION = 'Can only perform operation on full-rank matrix.';
+    public const MATRIX_RANK_EXCEPTION = 'Can only perform operation on full-rank matrix.';
 
     /**
      * Array for internal storage of decomposition.

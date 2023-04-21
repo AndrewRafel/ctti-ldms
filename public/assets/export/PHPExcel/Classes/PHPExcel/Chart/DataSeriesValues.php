@@ -27,9 +27,8 @@
  */
 class PHPExcel_Chart_DataSeriesValues
 {
-
-    const DATASERIES_TYPE_STRING    = 'String';
-    const DATASERIES_TYPE_NUMBER    = 'Number';
+    public const DATASERIES_TYPE_STRING    = 'String';
+    public const DATASERIES_TYPE_NUMBER    = 'Number';
 
     private static $dataTypeValues = array(
         self::DATASERIES_TYPE_STRING,

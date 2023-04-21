@@ -27,11 +27,11 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -57,9 +57,9 @@ echo date('H:i:s') , " Calculated data" , EOL;
 for($row = 1; $row <= 2; ++$row) {
     for ($col = 'A'; $col != 'C'; ++$col) {
         if ((!is_null($formula = $objPHPExcel->getActiveSheet()->getCell($col.$row)->getValue())) &&
-			($formula[0] == '=')) {
+            ($formula[0] == '=')) {
             echo 'Value of ' , $col , $row , ' [' , $formula , ']: ' ,
-                               $objPHPExcel->getActiveSheet()->getCell($col.$row)->getCalculatedValue() . EOL;
+            $objPHPExcel->getActiveSheet()->getCell($col.$row)->getCalculatedValue() . EOL;
         }
     }
 }
@@ -84,7 +84,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 

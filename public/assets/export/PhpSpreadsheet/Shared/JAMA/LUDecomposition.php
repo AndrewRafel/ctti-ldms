@@ -23,8 +23,8 @@ use PhpOffice\PhpSpreadsheet\Calculation\Exception as CalculationException;
  */
 class LUDecomposition
 {
-    const MATRIX_SINGULAR_EXCEPTION = 'Can only perform operation on singular matrix.';
-    const MATRIX_SQUARE_EXCEPTION = 'Mismatched Row dimension';
+    public const MATRIX_SINGULAR_EXCEPTION = 'Can only perform operation on singular matrix.';
+    public const MATRIX_SQUARE_EXCEPTION = 'Mismatched Row dimension';
 
     /**
      * Decomposition storage.

@@ -17,7 +17,7 @@ abstract class Coordinate
      *
      * @var string
      */
-    const DEFAULT_RANGE = 'A1:A1';
+    public const DEFAULT_RANGE = 'A1:A1';
 
     /**
      * Coordinate from string.

@@ -27,17 +27,17 @@
  */
 class PHPExcel_CachedObjectStorageFactory
 {
-    const cache_in_memory               = 'Memory';
-    const cache_in_memory_gzip          = 'MemoryGZip';
-    const cache_in_memory_serialized    = 'MemorySerialized';
-    const cache_igbinary                = 'Igbinary';
-    const cache_to_discISAM             = 'DiscISAM';
-    const cache_to_apc                  = 'APC';
-    const cache_to_memcache             = 'Memcache';
-    const cache_to_phpTemp              = 'PHPTemp';
-    const cache_to_wincache             = 'Wincache';
-    const cache_to_sqlite               = 'SQLite';
-    const cache_to_sqlite3              = 'SQLite3';
+    public const cache_in_memory               = 'Memory';
+    public const cache_in_memory_gzip          = 'MemoryGZip';
+    public const cache_in_memory_serialized    = 'MemorySerialized';
+    public const cache_igbinary                = 'Igbinary';
+    public const cache_to_discISAM             = 'DiscISAM';
+    public const cache_to_apc                  = 'APC';
+    public const cache_to_memcache             = 'Memcache';
+    public const cache_to_phpTemp              = 'PHPTemp';
+    public const cache_to_wincache             = 'Wincache';
+    public const cache_to_sqlite               = 'SQLite';
+    public const cache_to_sqlite3              = 'SQLite3';
 
     /**
      * Name of the method used for cell cacheing

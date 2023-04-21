@@ -33,7 +33,7 @@ $inputFileType = 'Excel5';
 //	$inputFileType = 'Gnumeric';
 $inputFileName = './sampleData/example1.xls';
 
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 echo 'Loading all WorkSheets<br />';
 $objReader->setLoadAllSheets();
@@ -45,7 +45,7 @@ echo '<hr />';
 echo $objPHPExcel->getSheetCount(),' worksheet',(($objPHPExcel->getSheetCount() == 1) ? '' : 's'),' loaded<br /><br />';
 $loadedSheetNames = $objPHPExcel->getSheetNames();
 foreach($loadedSheetNames as $sheetIndex => $loadedSheetName) {
-	echo $sheetIndex,' -> ',$loadedSheetName,'<br />';
+    echo $sheetIndex,' -> ',$loadedSheetName,'<br />';
 }
 
 

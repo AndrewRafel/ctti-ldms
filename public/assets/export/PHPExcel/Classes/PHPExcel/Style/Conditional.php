@@ -36,24 +36,24 @@
 class PHPExcel_Style_Conditional implements PHPExcel_IComparable
 {
     /* Condition types */
-    const CONDITION_NONE         = 'none';
-    const CONDITION_CELLIS       = 'cellIs';
-    const CONDITION_CONTAINSTEXT = 'containsText';
-    const CONDITION_EXPRESSION   = 'expression';
+    public const CONDITION_NONE         = 'none';
+    public const CONDITION_CELLIS       = 'cellIs';
+    public const CONDITION_CONTAINSTEXT = 'containsText';
+    public const CONDITION_EXPRESSION   = 'expression';
 
     /* Operator types */
-    const OPERATOR_NONE               = '';
-    const OPERATOR_BEGINSWITH         = 'beginsWith';
-    const OPERATOR_ENDSWITH           = 'endsWith';
-    const OPERATOR_EQUAL              = 'equal';
-    const OPERATOR_GREATERTHAN        = 'greaterThan';
-    const OPERATOR_GREATERTHANOREQUAL = 'greaterThanOrEqual';
-    const OPERATOR_LESSTHAN           = 'lessThan';
-    const OPERATOR_LESSTHANOREQUAL    = 'lessThanOrEqual';
-    const OPERATOR_NOTEQUAL           = 'notEqual';
-    const OPERATOR_CONTAINSTEXT       = 'containsText';
-    const OPERATOR_NOTCONTAINS        = 'notContains';
-    const OPERATOR_BETWEEN            = 'between';
+    public const OPERATOR_NONE               = '';
+    public const OPERATOR_BEGINSWITH         = 'beginsWith';
+    public const OPERATOR_ENDSWITH           = 'endsWith';
+    public const OPERATOR_EQUAL              = 'equal';
+    public const OPERATOR_GREATERTHAN        = 'greaterThan';
+    public const OPERATOR_GREATERTHANOREQUAL = 'greaterThanOrEqual';
+    public const OPERATOR_LESSTHAN           = 'lessThan';
+    public const OPERATOR_LESSTHANOREQUAL    = 'lessThanOrEqual';
+    public const OPERATOR_NOTEQUAL           = 'notEqual';
+    public const OPERATOR_CONTAINSTEXT       = 'containsText';
+    public const OPERATOR_NOTCONTAINS        = 'notContains';
+    public const OPERATOR_BETWEEN            = 'between';
 
     /**
      * Condition type
@@ -256,8 +256,8 @@ class PHPExcel_Style_Conditional implements PHPExcel_IComparable
      */
     public function setStyle(PHPExcel_Style $pValue = null)
     {
-           $this->style = $pValue;
-           return $this;
+        $this->style = $pValue;
+        return $this;
     }
 
     /**

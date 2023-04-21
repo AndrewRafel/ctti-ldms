@@ -6,9 +6,9 @@ use PhpOffice\PhpSpreadsheet\Shared\Date;
 
 class Financial
 {
-    const FINANCIAL_MAX_ITERATIONS = 128;
+    public const FINANCIAL_MAX_ITERATIONS = 128;
 
-    const FINANCIAL_PRECISION = 1.0e-08;
+    public const FINANCIAL_PRECISION = 1.0e-08;
 
     /**
      * isLastDayOfMonth.

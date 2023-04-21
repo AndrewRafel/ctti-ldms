@@ -866,8 +866,8 @@ class PHPExcel_Calculation_Engineering
      */
     public static function BESSELI($x, $ord)
     {
-        $x    = (is_null($x))    ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($x);
-        $ord    = (is_null($ord))    ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($ord);
+        $x    = (is_null($x)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($x);
+        $ord    = (is_null($ord)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($ord);
 
         if ((is_numeric($x)) && (is_numeric($ord))) {
             $ord    = floor($ord);
@@ -919,8 +919,8 @@ class PHPExcel_Calculation_Engineering
      */
     public static function BESSELJ($x, $ord)
     {
-        $x    = (is_null($x))    ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($x);
-        $ord    = (is_null($ord))    ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($ord);
+        $x    = (is_null($x)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($x);
+        $ord    = (is_null($ord)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($ord);
 
         if ((is_numeric($x)) && (is_numeric($ord))) {
             $ord    = floor($ord);
@@ -1011,8 +1011,8 @@ class PHPExcel_Calculation_Engineering
      */
     public static function BESSELK($x, $ord)
     {
-        $x        = (is_null($x))        ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($x);
-        $ord    = (is_null($ord))    ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($ord);
+        $x        = (is_null($x)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($x);
+        $ord    = (is_null($ord)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($ord);
 
         if ((is_numeric($x)) && (is_numeric($ord))) {
             if (($ord < 0) || ($x == 0.0)) {
@@ -1067,7 +1067,7 @@ class PHPExcel_Calculation_Engineering
                 (-0.4237922726e7 + $y * 0.8511937935e4)))));
             $f2 = 0.2499580570e14 + $y * (0.4244419664e12 + $y * (0.3733650367e10 + $y * (0.2245904002e8 + $y *
                 (0.1020426050e6 + $y * (0.3549632885e3 + $y)))));
-            $fRet = $f1 / $f2 + 0.636619772 * ( self::BESSELJ($fNum, 1) * log($fNum) - 1 / $fNum);
+            $fRet = $f1 / $f2 + 0.636619772 * (self::BESSELJ($fNum, 1) * log($fNum) - 1 / $fNum);
         } else {
             $fRet = sqrt(0.636619772 / $fNum) * sin($fNum - 2.356194491);
         }
@@ -1095,8 +1095,8 @@ class PHPExcel_Calculation_Engineering
      */
     public static function BESSELY($x, $ord)
     {
-        $x        = (is_null($x))        ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($x);
-        $ord    = (is_null($ord))    ? 0.0 :    PHPExcel_Calculation_Functions::flattenSingleValue($ord);
+        $x        = (is_null($x)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($x);
+        $ord    = (is_null($ord)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($ord);
 
         if ((is_numeric($x)) && (is_numeric($ord))) {
             if (($ord < 0) || ($x == 0.0)) {
@@ -1733,8 +1733,8 @@ class PHPExcel_Calculation_Engineering
     public static function COMPLEX($realNumber = 0.0, $imaginary = 0.0, $suffix = 'i')
     {
         $realNumber = (is_null($realNumber)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($realNumber);
-        $imaginary  = (is_null($imaginary))  ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($imaginary);
-        $suffix     = (is_null($suffix))     ? 'i' : PHPExcel_Calculation_Functions::flattenSingleValue($suffix);
+        $imaginary  = (is_null($imaginary)) ? 0.0 : PHPExcel_Calculation_Functions::flattenSingleValue($imaginary);
+        $suffix     = (is_null($suffix)) ? 'i' : PHPExcel_Calculation_Functions::flattenSingleValue($suffix);
 
         if (((is_numeric($realNumber)) && (is_numeric($imaginary))) &&
             (($suffix == 'i') || ($suffix == 'j') || ($suffix == ''))) {
@@ -2629,10 +2629,10 @@ class PHPExcel_Calculation_Engineering
                 }
             } elseif ((($fromUOM == 'K') || ($fromUOM == 'kel')) &&
                       (($toUOM == 'K') || ($toUOM == 'kel'))) {
-                        return $value;
+                return $value;
             } elseif ((($fromUOM == 'C') || ($fromUOM == 'cel')) &&
                       (($toUOM == 'C') || ($toUOM == 'cel'))) {
-                    return $value;
+                return $value;
             }
             if (($toUOM == 'F') || ($toUOM == 'fah')) {
                 if (($fromUOM == 'K') || ($fromUOM == 'kel')) {

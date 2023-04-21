@@ -464,8 +464,8 @@ class PHPExcel_Worksheet_BaseDrawing implements PHPExcel_IComparable
      */
     public function setShadow(PHPExcel_Worksheet_Drawing_Shadow $pValue = null)
     {
-           $this->shadow = $pValue;
-           return $this;
+        $this->shadow = $pValue;
+        return $this;
     }
 
     /**

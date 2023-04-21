@@ -6,12 +6,12 @@ use PhpOffice\PhpSpreadsheet\Shared\Trend\Trend;
 
 class Statistical
 {
-    const LOG_GAMMA_X_MAX_VALUE = 2.55e305;
-    const XMININ = 2.23e-308;
-    const EPS = 2.22e-16;
-    const MAX_VALUE = 1.2e308;
-    const MAX_ITERATIONS = 256;
-    const SQRT2PI = 2.5066282746310005024157652848110452530069867406099;
+    public const LOG_GAMMA_X_MAX_VALUE = 2.55e305;
+    public const XMININ = 2.23e-308;
+    public const EPS = 2.22e-16;
+    public const MAX_VALUE = 1.2e308;
+    public const MAX_ITERATIONS = 256;
+    public const SQRT2PI = 2.5066282746310005024157652848110452530069867406099;
 
     private static function checkTrendArrays(&$array1, &$array2)
     {

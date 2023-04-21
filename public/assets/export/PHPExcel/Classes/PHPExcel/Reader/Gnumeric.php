@@ -222,15 +222,15 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 
         $gFileData = $this->gzfileGetContents($pFilename);
 
-//        echo '<pre>';
-//        echo htmlentities($gFileData,ENT_QUOTES,'UTF-8');
-//        echo '</pre><hr />';
-//
+        //        echo '<pre>';
+        //        echo htmlentities($gFileData,ENT_QUOTES,'UTF-8');
+        //        echo '</pre><hr />';
+        //
         $xml = simplexml_load_string($this->securityScan($gFileData), 'SimpleXMLElement', PHPExcel_Settings::getLibXmlLoaderOptions());
         $namespacesMeta = $xml->getNamespaces(true);
 
-//        var_dump($namespacesMeta);
-//
+        //        var_dump($namespacesMeta);
+        //
         $gnmXML = $xml->children($namespacesMeta['gnm']);
 
         $docProps = $objPHPExcel->getProperties();
@@ -339,7 +339,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
         $worksheetID = 0;
         foreach ($gnmXML->Sheets->Sheet as $sheet) {
             $worksheetName = (string) $sheet->Name;
-//            echo '<b>Worksheet: ', $worksheetName,'</b><br />';
+            //            echo '<b>Worksheet: ', $worksheetName,'</b><br />';
             if ((isset($this->loadSheetsOnly)) && (!in_array($worksheetName, $this->loadSheetsOnly))) {
                 continue;
             }
@@ -411,9 +411,9 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
 
                 $ValueType = $cellAttributes->ValueType;
                 $ExprID = (string) $cellAttributes->ExprID;
-//                echo 'Cell ', $column, $row,'<br />';
-//                echo 'Type is ', $ValueType,'<br />';
-//                echo 'Value is ', $cell,'<br />';
+                //                echo 'Cell ', $column, $row,'<br />';
+                //                echo 'Type is ', $ValueType,'<br />';
+                //                echo 'Value is ', $cell,'<br />';
                 $type = PHPExcel_Cell_DataType::TYPE_FORMULA;
                 if ($ExprID > '') {
                     if (((string) $cell) > '') {
@@ -422,7 +422,7 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                             'row'        => $cellAttributes->Row,
                             'formula'    => (string) $cell
                         );
-//                        echo 'NEW EXPRESSION ', $ExprID,'<br />';
+                    //                        echo 'NEW EXPRESSION ', $ExprID,'<br />';
                     } else {
                         $expression = $this->expressions[$ExprID];
 
@@ -433,8 +433,8 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                             $cellAttributes->Row - $expression['row'],
                             $worksheetName
                         );
-//                        echo 'SHARED EXPRESSION ', $ExprID,'<br />';
-//                        echo 'New Value is ', $cell,'<br />';
+                        //                        echo 'SHARED EXPRESSION ', $ExprID,'<br />';
+                        //                        echo 'New Value is ', $cell,'<br />';
                     }
                     $type = PHPExcel_Cell_DataType::TYPE_FORMULA;
                 } else {
@@ -444,11 +444,12 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                             break;
                         case '20':        //    Boolean
                             $type = PHPExcel_Cell_DataType::TYPE_BOOL;
-                            $cell = ($cell == 'TRUE') ? true: false;
+                            $cell = ($cell == 'TRUE') ? true : false;
                             break;
                         case '30':        //    Integer
                             $cell = intval($cell);
                             // Excel 2007+ doesn't differentiate between integer and float, so set the value and dropthru to the next (numeric) case
+                            // no break
                         case '40':        //    Float
                             $type = PHPExcel_Cell_DataType::TYPE_NUMERIC;
                             break;
@@ -474,8 +475,8 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                     }
                 }
             }
-//            echo '$maxCol=', $maxCol,'; $maxRow=', $maxRow,'<br />';
-//
+            //            echo '$maxCol=', $maxCol,'; $maxRow=', $maxRow,'<br />';
+            //
             foreach ($sheet->Styles->StyleRegion as $styleRegion) {
                 $styleAttributes = $styleRegion->attributes();
                 if (($styleAttributes['startRow'] <= $maxRow) &&
@@ -488,11 +489,11 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                     $endRow = ($styleAttributes['endRow'] > $maxRow) ? $maxRow : $styleAttributes['endRow'];
                     $endRow += 1;
                     $cellRange = $startColumn.$startRow.':'.$endColumn.$endRow;
-//                    echo $cellRange,'<br />';
+                    //                    echo $cellRange,'<br />';
 
                     $styleAttributes = $styleRegion->Style->attributes();
-//                    var_dump($styleAttributes);
-//                    echo '<br />';
+                    //                    var_dump($styleAttributes);
+                    //                    echo '<br />';
 
                     //    We still set the number format mask for date/time values, even if readDataOnly is true
                     if ((!$this->readDataOnly) ||
@@ -615,8 +616,8 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                             }
 
                             $fontAttributes = $styleRegion->Style->Font->attributes();
-//                            var_dump($fontAttributes);
-//                            echo '<br />';
+                            //                            var_dump($fontAttributes);
+                            //                            echo '<br />';
                             $styleArray['font']['name'] = (string) $styleRegion->Style->Font;
                             $styleArray['font']['size'] = intval($fontAttributes['Unit']);
                             $styleArray['font']['bold'] = ($fontAttributes['Bold'] == '1') ? true : false;
@@ -677,8 +678,8 @@ class PHPExcel_Reader_Gnumeric extends PHPExcel_Reader_Abstract implements PHPEx
                                 $hyperlink = $styleRegion->Style->HyperLink->attributes();
                             }
                         }
-//                        var_dump($styleArray);
-//                        echo '<br />';
+                        //                        var_dump($styleArray);
+                        //                        echo '<br />';
                         $objPHPExcel->getActiveSheet()->getStyle($cellRange)->applyFromArray($styleArray);
                     }
                 }

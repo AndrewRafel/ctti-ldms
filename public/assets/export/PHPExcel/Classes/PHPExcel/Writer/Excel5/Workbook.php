@@ -835,7 +835,7 @@ class PHPExcel_Writer_Excel5_Workbook extends PHPExcel_Writer_Excel5_BIFFwriter
         $record = 0x0018;
 
         // option flags
-        $options = ($isHidden  ? 0x21 : 0x00);
+        $options = ($isHidden ? 0x21 : 0x00);
 
         $extra  = pack(
             'Cvvvvv',

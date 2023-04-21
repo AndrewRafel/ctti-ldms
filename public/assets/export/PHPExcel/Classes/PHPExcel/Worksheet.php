@@ -28,14 +28,14 @@
 class PHPExcel_Worksheet implements PHPExcel_IComparable
 {
     /* Break types */
-    const BREAK_NONE   = 0;
-    const BREAK_ROW    = 1;
-    const BREAK_COLUMN = 2;
+    public const BREAK_NONE   = 0;
+    public const BREAK_ROW    = 1;
+    public const BREAK_COLUMN = 2;
 
     /* Sheet state */
-    const SHEETSTATE_VISIBLE    = 'visible';
-    const SHEETSTATE_HIDDEN     = 'hidden';
-    const SHEETSTATE_VERYHIDDEN = 'veryHidden';
+    public const SHEETSTATE_VISIBLE    = 'visible';
+    public const SHEETSTATE_HIDDEN     = 'hidden';
+    public const SHEETSTATE_VERYHIDDEN = 'veryHidden';
 
     /**
      * Invalid characters in sheet title
@@ -1246,7 +1246,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
      */
     public function cellExists($pCoordinate = 'A1')
     {
-       // Worksheet reference?
+        // Worksheet reference?
         if (strpos($pCoordinate, '!') !== false) {
             $worksheetReference = PHPExcel_Worksheet::extractSheetTitle($pCoordinate, true);
             return $this->parent->getSheetByName($worksheetReference[0])->cellExists(strtoupper($worksheetReference[1]));
@@ -2421,7 +2421,7 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
             }
 
             // start coordinate
-            list ($startColumn, $startRow) = PHPExcel_Cell::coordinateFromString($startCell);
+            list($startColumn, $startRow) = PHPExcel_Cell::coordinateFromString($startCell);
 
             // Loop through $source
             foreach ($source as $rowData) {
@@ -2602,14 +2602,14 @@ class PHPExcel_Worksheet implements PHPExcel_IComparable
         // Flush cache
         $this->cellCollection->getCacheData('A1');
         // Build a reference table from images
-//        $imageCoordinates = array();
-//        $iterator = $this->getDrawingCollection()->getIterator();
-//        while ($iterator->valid()) {
-//            $imageCoordinates[$iterator->current()->getCoordinates()] = true;
-//
-//            $iterator->next();
-//        }
-//
+        //        $imageCoordinates = array();
+        //        $iterator = $this->getDrawingCollection()->getIterator();
+        //        while ($iterator->valid()) {
+        //            $imageCoordinates[$iterator->current()->getCoordinates()] = true;
+        //
+        //            $iterator->next();
+        //        }
+        //
         // Lookup highest column and highest row if cells are cleaned
         $colRow = $this->cellCollection->getHighestRowAndColumn();
         $highestRow = $colRow['row'];

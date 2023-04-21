@@ -27,10 +27,10 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -45,12 +45,12 @@ $objPHPExcel = new PHPExcel();
 // Set document properties
 echo date('H:i:s') , " Set document properties" , EOL;
 $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-							 ->setLastModifiedBy("Maarten Balliauw")
-							 ->setTitle("Office 2007 XLSX Test Document")
-							 ->setSubject("Office 2007 XLSX Test Document")
-							 ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
-							 ->setKeywords("office 2007 openxml php")
-							 ->setCategory("Test result file");
+                             ->setLastModifiedBy("Maarten Balliauw")
+                             ->setTitle("Office 2007 XLSX Test Document")
+                             ->setSubject("Office 2007 XLSX Test Document")
+                             ->setDescription("Test document for Office 2007 XLSX, generated using PHP classes.")
+                             ->setKeywords("office 2007 openxml php")
+                             ->setCategory("Test result file");
 
 
 // Create a first sheet
@@ -65,17 +65,17 @@ $objPHPExcel->getActiveSheet()->setCellValue('A1', "Firstname")
 
 // Add data
 for ($i = 2; $i <= 50; $i++) {
-	$objPHPExcel->getActiveSheet()->setCellValue('A' . $i, "FName $i");
-	$objPHPExcel->getActiveSheet()->setCellValue('B' . $i, "LName $i");
-	$objPHPExcel->getActiveSheet()->setCellValue('C' . $i, "PhoneNo $i");
-	$objPHPExcel->getActiveSheet()->setCellValue('D' . $i, "FaxNo $i");
-	$objPHPExcel->getActiveSheet()->setCellValue('E' . $i, true);
+    $objPHPExcel->getActiveSheet()->setCellValue('A' . $i, "FName $i");
+    $objPHPExcel->getActiveSheet()->setCellValue('B' . $i, "LName $i");
+    $objPHPExcel->getActiveSheet()->setCellValue('C' . $i, "PhoneNo $i");
+    $objPHPExcel->getActiveSheet()->setCellValue('D' . $i, "FaxNo $i");
+    $objPHPExcel->getActiveSheet()->setCellValue('E' . $i, true);
 
-	// Add page breaks every 10 rows
-	if ($i % 10 == 0) {
-		// Add a page break
-		$objPHPExcel->getActiveSheet()->setBreak( 'A' . $i, PHPExcel_Worksheet::BREAK_ROW );
-	}
+    // Add page breaks every 10 rows
+    if ($i % 10 == 0) {
+        // Add a page break
+        $objPHPExcel->getActiveSheet()->setBreak('A' . $i, PHPExcel_Worksheet::BREAK_ROW);
+    }
 }
 
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
@@ -106,7 +106,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 
@@ -121,7 +121,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xls', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 

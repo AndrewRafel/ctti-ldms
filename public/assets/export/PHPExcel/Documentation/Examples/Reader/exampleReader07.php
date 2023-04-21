@@ -34,7 +34,7 @@ $inputFileType = 'Excel5';
 $inputFileName = './sampleData/example1.xls';
 $sheetname = 'Data Sheet #2';
 
-echo 'Loading file ',pathinfo($inputFileName,PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
+echo 'Loading file ',pathinfo($inputFileName, PATHINFO_BASENAME),' using IOFactory with a defined reader type of ',$inputFileType,'<br />';
 $objReader = PHPExcel_IOFactory::createReader($inputFileType);
 echo 'Loading Sheet "',$sheetname,'" only<br />';
 $objReader->setLoadSheetsOnly($sheetname);
@@ -46,7 +46,7 @@ echo '<hr />';
 echo $objPHPExcel->getSheetCount(),' worksheet',(($objPHPExcel->getSheetCount() == 1) ? '' : 's'),' loaded<br /><br />';
 $loadedSheetNames = $objPHPExcel->getSheetNames();
 foreach($loadedSheetNames as $sheetIndex => $loadedSheetName) {
-	echo $sheetIndex,' -> ',$loadedSheetName,'<br />';
+    echo $sheetIndex,' -> ',$loadedSheetName,'<br />';
 }
 
 

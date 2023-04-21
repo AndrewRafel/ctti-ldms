@@ -30,7 +30,7 @@ class PHPExcel_Shared_String
     /**    Constants                */
     /**    Regular Expressions        */
     //    Fraction
-    const STRING_REGEXP_FRACTION    = '(-?)(\d+)\s+(\d+\/\d+)';
+    public const STRING_REGEXP_FRACTION    = '(-?)(\d+)\s+(\d+\/\d+)';
 
 
     /**

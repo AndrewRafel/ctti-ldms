@@ -242,7 +242,7 @@ class PHPExcel
     {
         $ReturnData = null;
         $What = strtolower($What);
-        switch ($What){
+        switch ($What) {
             case 'all':
                 $ReturnData = $this->ribbonXMLData;
                 break;
@@ -385,8 +385,8 @@ class PHPExcel
         $this->cellXfSupervisor->bindParent($this);
 
         // Create the default style
-        $this->addCellXf(new PHPExcel_Style);
-        $this->addCellStyleXf(new PHPExcel_Style);
+        $this->addCellXf(new PHPExcel_Style());
+        $this->addCellStyleXf(new PHPExcel_Style());
     }
 
     /**

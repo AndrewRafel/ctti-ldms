@@ -20,12 +20,12 @@ use PhpOffice\PhpSpreadsheet\Shared\StringHelper;
  */
 class Matrix
 {
-    const POLYMORPHIC_ARGUMENT_EXCEPTION = 'Invalid argument pattern for polymorphic function.';
-    const ARGUMENT_TYPE_EXCEPTION = 'Invalid argument type.';
-    const ARGUMENT_BOUNDS_EXCEPTION = 'Invalid argument range.';
-    const MATRIX_DIMENSION_EXCEPTION = 'Matrix dimensions are not equal.';
-    const ARRAY_LENGTH_EXCEPTION = 'Array length must be a multiple of m.';
-    const MATRIX_SPD_EXCEPTION = 'Can only perform operation on symmetric positive definite matrix.';
+    public const POLYMORPHIC_ARGUMENT_EXCEPTION = 'Invalid argument pattern for polymorphic function.';
+    public const ARGUMENT_TYPE_EXCEPTION = 'Invalid argument type.';
+    public const ARGUMENT_BOUNDS_EXCEPTION = 'Invalid argument range.';
+    public const MATRIX_DIMENSION_EXCEPTION = 'Matrix dimensions are not equal.';
+    public const ARRAY_LENGTH_EXCEPTION = 'Array length must be a multiple of m.';
+    public const MATRIX_SPD_EXCEPTION = 'Can only perform operation on symmetric positive definite matrix.';
 
     /**
      * Matrix storage.
@@ -66,21 +66,21 @@ class Matrix
                     $this->A = $args[0];
 
                     break;
-                //Square matrix - n x n
+                    //Square matrix - n x n
                 case 'integer':
                     $this->m = $args[0];
                     $this->n = $args[0];
                     $this->A = array_fill(0, $this->m, array_fill(0, $this->n, 0));
 
                     break;
-                //Rectangular matrix - m x n
+                    //Rectangular matrix - m x n
                 case 'integer,integer':
                     $this->m = $args[0];
                     $this->n = $args[1];
                     $this->A = array_fill(0, $this->m, array_fill(0, $this->n, 0));
 
                     break;
-                //Rectangular matrix - m x n initialized from packed array
+                    //Rectangular matrix - m x n initialized from packed array
                 case 'array,integer':
                     $this->m = $args[1];
                     if ($this->m != 0) {
@@ -195,7 +195,7 @@ class Matrix
                     return $R;
 
                     break;
-                //A($i0...$iF; $j0...$jF)
+                    //A($i0...$iF; $j0...$jF)
                 case 'integer,integer,integer,integer':
                     list($i0, $iF, $j0, $jF) = $args;
                     if (($iF > $i0) && ($this->m >= $iF) && ($i0 >= 0)) {
@@ -218,7 +218,7 @@ class Matrix
                     return $R;
 
                     break;
-                //$R = array of row indices; $C = array of column indices
+                    //$R = array of row indices; $C = array of column indices
                 case 'array,array':
                     list($RL, $CL) = $args;
                     if (count($RL) > 0) {
@@ -241,7 +241,7 @@ class Matrix
                     return $R;
 
                     break;
-                //A($i0...$iF); $CL = array of column indices
+                    //A($i0...$iF); $CL = array of column indices
                 case 'integer,integer,array':
                     list($i0, $iF, $CL) = $args;
                     if (($iF > $i0) && ($this->m >= $iF) && ($i0 >= 0)) {
@@ -264,7 +264,7 @@ class Matrix
                     return $R;
 
                     break;
-                //$RL = array of row indices
+                    //$RL = array of row indices
                 case 'array,integer,integer':
                     list($RL, $j0, $jF) = $args;
                     if (count($RL) > 0) {

@@ -25,9 +25,9 @@ use PhpOffice\PhpSpreadsheet\Writer\Ods\Cell\Comment;
  */
 class Content extends WriterPart
 {
-    const NUMBER_COLS_REPEATED_MAX = 1024;
-    const NUMBER_ROWS_REPEATED_MAX = 1048576;
-    const CELL_STYLE_PREFIX = 'ce';
+    public const NUMBER_COLS_REPEATED_MAX = 1024;
+    public const NUMBER_ROWS_REPEATED_MAX = 1048576;
+    public const CELL_STYLE_PREFIX = 'ce';
 
     /**
      * Write content.xml to XML format.

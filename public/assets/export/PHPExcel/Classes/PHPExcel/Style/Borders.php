@@ -28,10 +28,10 @@
 class PHPExcel_Style_Borders extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
     /* Diagonal directions */
-    const DIAGONAL_NONE = 0;
-    const DIAGONAL_UP   = 1;
-    const DIAGONAL_DOWN = 2;
-    const DIAGONAL_BOTH = 3;
+    public const DIAGONAL_NONE = 0;
+    public const DIAGONAL_UP   = 1;
+    public const DIAGONAL_DOWN = 2;
+    public const DIAGONAL_BOTH = 3;
 
     /**
      * Left

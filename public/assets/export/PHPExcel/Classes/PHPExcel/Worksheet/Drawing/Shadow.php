@@ -28,14 +28,14 @@
 class PHPExcel_Worksheet_Drawing_Shadow implements PHPExcel_IComparable
 {
     /* Shadow alignment */
-    const SHADOW_BOTTOM       = 'b';
-    const SHADOW_BOTTOM_LEFT  = 'bl';
-    const SHADOW_BOTTOM_RIGHT = 'br';
-    const SHADOW_CENTER       = 'ctr';
-    const SHADOW_LEFT         = 'l';
-    const SHADOW_TOP          = 't';
-    const SHADOW_TOP_LEFT     = 'tl';
-    const SHADOW_TOP_RIGHT    = 'tr';
+    public const SHADOW_BOTTOM       = 'b';
+    public const SHADOW_BOTTOM_LEFT  = 'bl';
+    public const SHADOW_BOTTOM_RIGHT = 'br';
+    public const SHADOW_CENTER       = 'ctr';
+    public const SHADOW_LEFT         = 'l';
+    public const SHADOW_TOP          = 't';
+    public const SHADOW_TOP_LEFT     = 'tl';
+    public const SHADOW_TOP_RIGHT    = 'tr';
 
     /**
      * Visible
@@ -234,8 +234,8 @@ class PHPExcel_Worksheet_Drawing_Shadow implements PHPExcel_IComparable
      */
     public function setColor(PHPExcel_Style_Color $pValue = null)
     {
-           $this->color = $pValue;
-           return $this;
+        $this->color = $pValue;
+        return $this;
     }
 
    /**

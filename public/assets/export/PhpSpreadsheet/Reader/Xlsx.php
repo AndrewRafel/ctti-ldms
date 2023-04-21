@@ -465,7 +465,7 @@ class Xlsx extends BaseReader
                     }
 
                     break;
-                //Ribbon
+                    //Ribbon
                 case 'http://schemas.microsoft.com/office/2006/relationships/ui/extensibility':
                     $customUI = $rel['Target'];
                     if ($customUI !== null) {
@@ -509,7 +509,7 @@ class Xlsx extends BaseReader
                                 $worksheets[(string) $ele['Id']] = $ele['Target'];
 
                                 break;
-                            // a vbaProject ? (: some macros)
+                                // a vbaProject ? (: some macros)
                             case 'http://schemas.microsoft.com/office/2006/relationships/vbaProject':
                                 $macros = $ele['Target'];
 
@@ -1135,12 +1135,14 @@ class Xlsx extends BaseReader
                                             //    We should only ever have one top10 filter
                                             foreach ($filterColumn->top10 as $filterRule) {
                                                 $column->createRule()->setRule(
-                                                    (((isset($filterRule['percent'])) && ($filterRule['percent'] == 1))
+                                                    (
+                                                        ((isset($filterRule['percent'])) && ($filterRule['percent'] == 1))
                                                         ? Column\Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_PERCENT
                                                         : Column\Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_BY_VALUE
                                                     ),
                                                     (string) $filterRule['val'],
-                                                    (((isset($filterRule['top'])) && ($filterRule['top'] == 1))
+                                                    (
+                                                        ((isset($filterRule['top'])) && ($filterRule['top'] == 1))
                                                         ? Column\Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_TOP
                                                         : Column\Rule::AUTOFILTER_COLUMN_RULE_TOPTEN_BOTTOM
                                                     )
@@ -1956,7 +1958,7 @@ class Xlsx extends BaseReader
 
                         break;
 
-                    // unparsed
+                        // unparsed
                     case 'application/vnd.ms-excel.controlproperties+xml':
                         $unparsedLoadedData['override_content_types'][(string) $contentType['PartName']] = (string) $contentType['ContentType'];
 

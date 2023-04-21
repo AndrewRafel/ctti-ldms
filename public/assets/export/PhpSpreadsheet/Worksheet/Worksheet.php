@@ -28,21 +28,21 @@ use PhpOffice\PhpSpreadsheet\Style\Style;
 class Worksheet implements IComparable
 {
     // Break types
-    const BREAK_NONE = 0;
-    const BREAK_ROW = 1;
-    const BREAK_COLUMN = 2;
+    public const BREAK_NONE = 0;
+    public const BREAK_ROW = 1;
+    public const BREAK_COLUMN = 2;
 
     // Sheet state
-    const SHEETSTATE_VISIBLE = 'visible';
-    const SHEETSTATE_HIDDEN = 'hidden';
-    const SHEETSTATE_VERYHIDDEN = 'veryHidden';
+    public const SHEETSTATE_VISIBLE = 'visible';
+    public const SHEETSTATE_HIDDEN = 'hidden';
+    public const SHEETSTATE_VERYHIDDEN = 'veryHidden';
 
     /**
      * Maximum 31 characters allowed for sheet title.
      *
      * @var int
      */
-    const SHEET_TITLE_MAXIMUM_LENGTH = 31;
+    public const SHEET_TITLE_MAXIMUM_LENGTH = 31;
 
     /**
      * Invalid characters in sheet title.

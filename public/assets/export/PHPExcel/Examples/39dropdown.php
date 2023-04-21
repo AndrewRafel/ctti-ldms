@@ -27,11 +27,11 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 /** Include PHPExcel */
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
@@ -45,15 +45,16 @@ $objPHPExcel = new PHPExcel();
 echo date('H:i:s') , " Set document properties" , EOL;
 $objPHPExcel->getProperties()
     ->setCreator("PHPOffice")
-	->setLastModifiedBy("PHPOffice")
-	->setTitle("PHPExcel Test Document")
-	->setSubject("PHPExcel Test Document")
-	->setDescription("Test document for PHPExcel, generated using PHP classes.")
-	->setKeywords("Office PHPExcel php")
-	->setCategory("Test result file");
+    ->setLastModifiedBy("PHPOffice")
+    ->setTitle("PHPExcel Test Document")
+    ->setSubject("PHPExcel Test Document")
+    ->setDescription("Test document for PHPExcel, generated using PHP classes.")
+    ->setKeywords("Office PHPExcel php")
+    ->setCategory("Test result file");
 
 
-function transpose($value) {
+function transpose($value)
+{
     return array($value);
 }
 
@@ -65,7 +66,7 @@ $column = 'F';
 foreach(glob('./data/continents/*') as $key => $filename) {
     $continent = pathinfo($filename, PATHINFO_FILENAME);
     echo "Loading $continent", EOL;
-    $continent = str_replace(' ','_',$continent);
+    $continent = str_replace(' ', '_', $continent);
     $countries = file($filename, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
     $countryCount = count($countries);
 
@@ -75,8 +76,9 @@ foreach(glob('./data/continents/*') as $key => $filename) {
         ->fromArray($countries, null, $column . '1');
     $objPHPExcel->addNamedRange(
         new PHPExcel_NamedRange(
-            $continent, 
-            $objPHPExcel->getActiveSheet(), $column . '1:' . $column . $countryCount
+            $continent,
+            $objPHPExcel->getActiveSheet(),
+            $column . '1:' . $column . $countryCount
         )
     );
     $objPHPExcel->getActiveSheet()
@@ -96,8 +98,9 @@ $objPHPExcel->getActiveSheet()
 
 $objPHPExcel->addNamedRange(
     new PHPExcel_NamedRange(
-        'Continents', 
-        $objPHPExcel->getActiveSheet(), $continentColumn . '1:' . $continentColumn . ($key+1)
+        'Continents',
+        $objPHPExcel->getActiveSheet(),
+        $continentColumn . '1:' . $continentColumn . ($key+1)
     )
 );
 
@@ -119,8 +122,8 @@ $objPHPExcel->getActiveSheet()
 $objValidation = $objPHPExcel->getActiveSheet()
     ->getCell('B1')
     ->getDataValidation();
-$objValidation->setType( PHPExcel_Cell_DataValidation::TYPE_LIST )
-    ->setErrorStyle( PHPExcel_Cell_DataValidation::STYLE_INFORMATION )
+$objValidation->setType(PHPExcel_Cell_DataValidation::TYPE_LIST)
+    ->setErrorStyle(PHPExcel_Cell_DataValidation::STYLE_INFORMATION)
     ->setAllowBlank(false)
     ->setShowInputMessage(true)
     ->setShowErrorMessage(true)
@@ -140,8 +143,8 @@ $objPHPExcel->getActiveSheet()
 $objValidation = $objPHPExcel->getActiveSheet()
     ->getCell('B3')
     ->getDataValidation();
-$objValidation->setType( PHPExcel_Cell_DataValidation::TYPE_LIST )
-    ->setErrorStyle( PHPExcel_Cell_DataValidation::STYLE_INFORMATION )
+$objValidation->setType(PHPExcel_Cell_DataValidation::TYPE_LIST)
+    ->setErrorStyle(PHPExcel_Cell_DataValidation::STYLE_INFORMATION)
     ->setAllowBlank(false)
     ->setShowInputMessage(true)
     ->setShowErrorMessage(true)

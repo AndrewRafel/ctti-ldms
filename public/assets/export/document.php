@@ -1,51 +1,45 @@
 <?php
 $connect = mysqli_connect("localhost", "root", "root", "import_export");
-$sql = "SELECT * FROM book";  
+$sql = "SELECT * FROM book";
 $result = mysqli_query($connect, $sql);
 
 $output = '';
-if(isset($_POST["import"]))
-{
-  $tmp = explode(".", $_FILES["excel"]["name"]);
- $extension = end($tmp); // For getting Extension of selected file
- $allowed_extension = array("xls", "xlsx", "csv"); //allowed extension
- if(in_array($extension, $allowed_extension)) //check selected file extension is present in allowed extension array
- {
-  $file = $_FILES["excel"]["tmp_name"]; // getting temporary source of excel file
-  //include("PHPSpreadsheet/IOFactory.php"); // Add PHPExcel Library in this code
-  require 'PHPExcel/Classes/PHPExcel.php';
-  include("PHPExcel/Classes/PHPExcel/IOFactory.php");
-  $objPHPExcel = PHPExcel_IOFactory::load($file); // create object of PHPExcel library by using load() method and in load method define path of selected file
+if(isset($_POST["import"])) {
+    $tmp = explode(".", $_FILES["excel"]["name"]);
+    $extension = end($tmp); // For getting Extension of selected file
+    $allowed_extension = array("xls", "xlsx", "csv"); //allowed extension
+    if(in_array($extension, $allowed_extension)) { //check selected file extension is present in allowed extension array
+        $file = $_FILES["excel"]["tmp_name"]; // getting temporary source of excel file
+        //include("PHPSpreadsheet/IOFactory.php"); // Add PHPExcel Library in this code
+        require 'PHPExcel/Classes/PHPExcel.php';
+        include("PHPExcel/Classes/PHPExcel/IOFactory.php");
+        $objPHPExcel = PHPExcel_IOFactory::load($file); // create object of PHPExcel library by using load() method and in load method define path of selected file
 
-  $output .= "<label class='text-success'>Data Inserted</label><br /><table class='table table-bordered'>";
-  foreach ($objPHPExcel->getWorksheetIterator() as $worksheet)
-  {
-   $highestRow = $worksheet->getHighestRow();
-   for($row=2; $row<=$highestRow; $row++)
-   {
-    $output .= "<tr>";
-    $book_title = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
-    $author = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());
-    $publisher_name = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(2, $row)->getValue());
-    $isbn = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(3, $row)->getValue());
-    $copyright_year = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(4, $row)->getValue());
-    $query = "INSERT INTO book(book_title, author, publisher_name, isbn, copyright_year) VALUES ('".$book_title."', '".$author."', '".$publisher_name."', '".$isbn."', '".$copyright_year."')";
-    mysqli_query($connect, $query);
-    $output .= '<td>'.$book_title.'</td>';
-    $output .= '<td>'.$author.'</td>';
-    $output .= '<td>'.$publisher_name.'</td>';
-    $output .= '<td>'.$isbn.'</td>';
-    $output .= '<td>'.$copyright_year.'</td>';
-    $output .= '</tr>';
-   }
-  } 
-  $output .= '</table>';
+        $output .= "<label class='text-success'>Data Inserted</label><br /><table class='table table-bordered'>";
+        foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
+            $highestRow = $worksheet->getHighestRow();
+            for($row=2; $row<=$highestRow; $row++) {
+                $output .= "<tr>";
+                $book_title = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(0, $row)->getValue());
+                $author = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(1, $row)->getValue());
+                $publisher_name = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(2, $row)->getValue());
+                $isbn = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(3, $row)->getValue());
+                $copyright_year = mysqli_real_escape_string($connect, $worksheet->getCellByColumnAndRow(4, $row)->getValue());
+                $query = "INSERT INTO book(book_title, author, publisher_name, isbn, copyright_year) VALUES ('".$book_title."', '".$author."', '".$publisher_name."', '".$isbn."', '".$copyright_year."')";
+                mysqli_query($connect, $query);
+                $output .= '<td>'.$book_title.'</td>';
+                $output .= '<td>'.$author.'</td>';
+                $output .= '<td>'.$publisher_name.'</td>';
+                $output .= '<td>'.$isbn.'</td>';
+                $output .= '<td>'.$copyright_year.'</td>';
+                $output .= '</tr>';
+            }
+        }
+        $output .= '</table>';
 
- }
- else
- {
-  $output = '<label class="text-danger">Invalid File</label>'; //if non excel file then
- }
+    } else {
+        $output = '<label class="text-danger">Invalid File</label>'; //if non excel file then
+    }
 }
 ?>
 <html>  
@@ -71,9 +65,8 @@ if(isset($_POST["import"]))
        <th>Copyright Year</th>
       </tr>
      <?php
-     while($row = mysqli_fetch_array($result))  
-     {  
-      echo '  
+     while($row = mysqli_fetch_array($result)) {
+         echo '  
        <tr>  
          <td>'.$row["book_title"].'</td>
          <td>'.$row["author"].'</td>  
@@ -81,9 +74,9 @@ if(isset($_POST["import"]))
          <td>'.$row["isbn"].'</td>  
          <td>'.$row["copyright_year"].'</td>
        </tr>
-      ';  
+      ';
      }
-     ?>
+?>
     </table>
     <br />
     <form method="post" action="export.php">
@@ -98,8 +91,8 @@ if(isset($_POST["import"]))
     <br />
     <br />
     <?php
-      echo $output;
-    ?>
+ echo $output;
+?>
    </div>  
   </div>  
  </body>  

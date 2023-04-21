@@ -57,13 +57,13 @@ class PHPExcel_Writer_Excel5_Parser
     //         *:/\?[]
     // Moreover, there are valid sheet title characters that cannot occur in unquoted form (there may be more?)
     // +-% '^&<>=,;#()"{}
-    const REGEX_SHEET_TITLE_UNQUOTED = '[^\*\:\/\\\\\?\[\]\+\-\% \\\'\^\&\<\>\=\,\;\#\(\)\"\{\}]+';
+    public const REGEX_SHEET_TITLE_UNQUOTED = '[^\*\:\/\\\\\?\[\]\+\-\% \\\'\^\&\<\>\=\,\;\#\(\)\"\{\}]+';
 
     // Sheet title in quoted form (without surrounding quotes)
     // Invalid sheet title characters cannot occur in the sheet title:
     // *:/\?[]                    (usual invalid sheet title characters)
     // Single quote is represented as a pair ''
-    const REGEX_SHEET_TITLE_QUOTED = '(([^\*\:\/\\\\\?\[\]\\\'])+|(\\\'\\\')+)+';
+    public const REGEX_SHEET_TITLE_QUOTED = '(([^\*\:\/\\\\\?\[\]\\\'])+|(\\\'\\\')+)+';
 
     /**
      * The index of the character we are currently looking at
@@ -545,10 +545,10 @@ class PHPExcel_Writer_Excel5_Parser
             return $this->convertError($token);
 
         // commented so argument number can be processed correctly. See toReversePolish().
-        /*elseif (preg_match("/[A-Z0-9\xc0-\xdc\.]+/", $token))
-        {
-            return($this->convertFunction($token, $this->_func_args));
-        }*/
+            /*elseif (preg_match("/[A-Z0-9\xc0-\xdc\.]+/", $token))
+            {
+                return($this->convertFunction($token, $this->_func_args));
+            }*/
 
         // if it's an argument, ignore the token (the argument remains)
         } elseif ($token == 'arg') {
@@ -608,7 +608,7 @@ class PHPExcel_Writer_Excel5_Parser
     private function convertFunction($token, $num_args)
     {
         $args     = $this->functions[$token][1];
-//        $volatile = $this->functions[$token][3];
+        //        $volatile = $this->functions[$token][3];
 
         // Fixed number of args eg. TIME($i, $j, $k).
         if ($args >= 0) {
@@ -667,7 +667,7 @@ class PHPExcel_Writer_Excel5_Parser
      */
     private function convertRange3d($token)
     {
-//        $class = 0; // formulas like Sheet1!$A$1:$A$2 in list type data validation need this class (0x3B)
+        //        $class = 0; // formulas like Sheet1!$A$1:$A$2 in list type data validation need this class (0x3B)
 
         // Split the ref at the ! symbol
         list($ext_ref, $range) = explode('!', $token);
@@ -683,19 +683,19 @@ class PHPExcel_Writer_Excel5_Parser
             list($row1, $col1) = $this->cellToPackedRowcol($cell1);
             list($row2, $col2) = $this->cellToPackedRowcol($cell2);
         } else { // It's a rows range (like 26:27)
-             list($row1, $col1, $row2, $col2) = $this->rangeToPackedRange($cell1.':'.$cell2);
+            list($row1, $col1, $row2, $col2) = $this->rangeToPackedRange($cell1.':'.$cell2);
         }
 
         // The ptg value depends on the class of the ptg.
-//        if ($class == 0) {
-            $ptgArea = pack("C", $this->ptg['ptgArea3d']);
-//        } elseif ($class == 1) {
-//            $ptgArea = pack("C", $this->ptg['ptgArea3dV']);
-//        } elseif ($class == 2) {
-//            $ptgArea = pack("C", $this->ptg['ptgArea3dA']);
-//        } else {
-//            throw new PHPExcel_Writer_Exception("Unknown class $class");
-//        }
+        //        if ($class == 0) {
+        $ptgArea = pack("C", $this->ptg['ptgArea3d']);
+        //        } elseif ($class == 1) {
+        //            $ptgArea = pack("C", $this->ptg['ptgArea3dV']);
+        //        } elseif ($class == 2) {
+        //            $ptgArea = pack("C", $this->ptg['ptgArea3dA']);
+        //        } else {
+        //            throw new PHPExcel_Writer_Exception("Unknown class $class");
+        //        }
 
         return $ptgArea . $ext_ref . $row1 . $row2 . $col1. $col2;
     }
@@ -709,23 +709,23 @@ class PHPExcel_Writer_Excel5_Parser
      */
     private function convertRef2d($cell)
     {
-//        $class = 2; // as far as I know, this is magick.
+        //        $class = 2; // as far as I know, this is magick.
 
         // Convert the cell reference
         $cell_array = $this->cellToPackedRowcol($cell);
         list($row, $col) = $cell_array;
 
         // The ptg value depends on the class of the ptg.
-//        if ($class == 0) {
-//            $ptgRef = pack("C", $this->ptg['ptgRef']);
-//        } elseif ($class == 1) {
-//            $ptgRef = pack("C", $this->ptg['ptgRefV']);
-//        } elseif ($class == 2) {
-            $ptgRef = pack("C", $this->ptg['ptgRefA']);
-//        } else {
-//            // TODO: use real error codes
-//            throw new PHPExcel_Writer_Exception("Unknown class $class");
-//        }
+        //        if ($class == 0) {
+        //            $ptgRef = pack("C", $this->ptg['ptgRef']);
+        //        } elseif ($class == 1) {
+        //            $ptgRef = pack("C", $this->ptg['ptgRefV']);
+        //        } elseif ($class == 2) {
+        $ptgRef = pack("C", $this->ptg['ptgRefA']);
+        //        } else {
+        //            // TODO: use real error codes
+        //            throw new PHPExcel_Writer_Exception("Unknown class $class");
+        //        }
         return $ptgRef.$row.$col;
     }
 
@@ -739,7 +739,7 @@ class PHPExcel_Writer_Excel5_Parser
      */
     private function convertRef3d($cell)
     {
-//        $class = 2; // as far as I know, this is magick.
+        //        $class = 2; // as far as I know, this is magick.
 
         // Split the ref at the ! symbol
         list($ext_ref, $cell) = explode('!', $cell);
@@ -751,15 +751,15 @@ class PHPExcel_Writer_Excel5_Parser
         list($row, $col) = $this->cellToPackedRowcol($cell);
 
         // The ptg value depends on the class of the ptg.
-//        if ($class == 0) {
-//            $ptgRef = pack("C", $this->ptg['ptgRef3d']);
-//        } elseif ($class == 1) {
-//            $ptgRef = pack("C", $this->ptg['ptgRef3dV']);
-//        } elseif ($class == 2) {
-            $ptgRef = pack("C", $this->ptg['ptgRef3dA']);
-//        } else {
-//            throw new PHPExcel_Writer_Exception("Unknown class $class");
-//        }
+        //        if ($class == 0) {
+        //            $ptgRef = pack("C", $this->ptg['ptgRef3d']);
+        //        } elseif ($class == 1) {
+        //            $ptgRef = pack("C", $this->ptg['ptgRef3dV']);
+        //        } elseif ($class == 2) {
+        $ptgRef = pack("C", $this->ptg['ptgRef3dA']);
+        //        } else {
+        //            throw new PHPExcel_Writer_Exception("Unknown class $class");
+        //        }
 
         return $ptgRef . $ext_ref. $row . $col;
     }
@@ -1267,7 +1267,7 @@ class PHPExcel_Writer_Excel5_Parser
         while (($this->currentToken == "+") or
                ($this->currentToken == "-") or
                ($this->currentToken == "^")) {
-        /**/
+            /**/
             if ($this->currentToken == "+") {
                 $this->advance();
                 $result2 = $this->term();
@@ -1311,7 +1311,7 @@ class PHPExcel_Writer_Excel5_Parser
         $result = $this->fact();
         while (($this->currentToken == "*") or
                ($this->currentToken == "/")) {
-        /**/
+            /**/
             if ($this->currentToken == "*") {
                 $this->advance();
                 $result2 = $this->fact();
@@ -1416,7 +1416,7 @@ class PHPExcel_Writer_Excel5_Parser
         $this->advance();
         $this->advance();         // eat the "("
         while ($this->currentToken != ')') {
-        /**/
+            /**/
             if ($num_args > 0) {
                 if ($this->currentToken == "," || $this->currentToken == ";") {
                     $this->advance();  // eat the "," or ";"

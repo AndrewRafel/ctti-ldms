@@ -617,11 +617,11 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
         $dataProp = pack('v', 0x0001);
         $dataProp .= pack('v', 0x0000);
         // array of UnalignedLpstr
-          // cch
-          $dataProp .= pack('v', 0x000A);
-          $dataProp .= pack('v', 0x0000);
-          // value
-          $dataProp .= 'Worksheet'.chr(0);
+        // cch
+        $dataProp .= pack('v', 0x000A);
+        $dataProp .= pack('v', 0x0000);
+        // value
+        $dataProp .= 'Worksheet'.chr(0);
 
         $dataSection[] = array('summary'=> array('pack' => 'V', 'data' => 0x0D),
                                'offset' => array('pack' => 'V'),
@@ -631,31 +631,31 @@ class PHPExcel_Writer_Excel5 extends PHPExcel_Writer_Abstract implements PHPExce
 
         // GKPIDDSI_HEADINGPAIR
         // VtVecHeadingPairValue
-          // cElements
-          $dataProp = pack('v', 0x0002);
-          $dataProp .= pack('v', 0x0000);
-          // Array of vtHeadingPair
-            // vtUnalignedString - headingString
-              // stringType
-              $dataProp .= pack('v', 0x001E);
-              // padding
-              $dataProp .= pack('v', 0x0000);
-              // UnalignedLpstr
-                // cch
-                $dataProp .= pack('v', 0x0013);
-                $dataProp .= pack('v', 0x0000);
-                // value
-                $dataProp .= 'Feuilles de calcul';
-            // vtUnalignedString - headingParts
-              // wType : 0x0003 = 32 bit signed integer
-              $dataProp .= pack('v', 0x0300);
-              // padding
-              $dataProp .= pack('v', 0x0000);
-              // value
-              $dataProp .= pack('v', 0x0100);
-              $dataProp .= pack('v', 0x0000);
-              $dataProp .= pack('v', 0x0000);
-              $dataProp .= pack('v', 0x0000);
+        // cElements
+        $dataProp = pack('v', 0x0002);
+        $dataProp .= pack('v', 0x0000);
+        // Array of vtHeadingPair
+        // vtUnalignedString - headingString
+        // stringType
+        $dataProp .= pack('v', 0x001E);
+        // padding
+        $dataProp .= pack('v', 0x0000);
+        // UnalignedLpstr
+        // cch
+        $dataProp .= pack('v', 0x0013);
+        $dataProp .= pack('v', 0x0000);
+        // value
+        $dataProp .= 'Feuilles de calcul';
+        // vtUnalignedString - headingParts
+        // wType : 0x0003 = 32 bit signed integer
+        $dataProp .= pack('v', 0x0300);
+        // padding
+        $dataProp .= pack('v', 0x0000);
+        // value
+        $dataProp .= pack('v', 0x0100);
+        $dataProp .= pack('v', 0x0000);
+        $dataProp .= pack('v', 0x0000);
+        $dataProp .= pack('v', 0x0000);
 
         $dataSection[] = array('summary'=> array('pack' => 'V', 'data' => 0x0C),
                                'offset' => array('pack' => 'V'),

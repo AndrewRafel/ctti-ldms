@@ -2,16 +2,22 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\News;
+use App\Entity\Program;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class PagesController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function home(): Response
+    public function home(EntityManagerInterface $entityManager): Response
     {
-        return $this->render('pages/home.html.twig');
+       // $id=1;
+        $news = $entityManager->getRepository(News::class);
+        $program=$entityManager->getRepository(Program::class);
+        return $this->render('pages/home.html.twig',['news'=>$news, 'program'=>$program]);
     }
 
     #[Route('/about', name: 'about')]

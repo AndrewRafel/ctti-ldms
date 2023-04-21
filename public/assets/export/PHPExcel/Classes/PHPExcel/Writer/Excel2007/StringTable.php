@@ -60,13 +60,13 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
                     $cellValue !== '' &&
                     !isset($aFlippedStringTable[$cellValue]) &&
                     ($cell->getDataType() == PHPExcel_Cell_DataType::TYPE_STRING || $cell->getDataType() == PHPExcel_Cell_DataType::TYPE_STRING2 || $cell->getDataType() == PHPExcel_Cell_DataType::TYPE_NULL)) {
-                        $aStringTable[] = $cellValue;
-                        $aFlippedStringTable[$cellValue] = true;
+                    $aStringTable[] = $cellValue;
+                    $aFlippedStringTable[$cellValue] = true;
                 } elseif ($cellValue instanceof PHPExcel_RichText &&
                           ($cellValue !== null) &&
                           !isset($aFlippedStringTable[$cellValue->getHashCode()])) {
-                                $aStringTable[] = $cellValue;
-                                $aFlippedStringTable[$cellValue->getHashCode()] = true;
+                    $aStringTable[] = $cellValue;
+                    $aFlippedStringTable[$cellValue->getHashCode()] = true;
                 }
             }
 
@@ -142,7 +142,7 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
         if ($prefix !== null) {
             $prefix .= ':';
         }
-            
+
         // Loop through rich text elements
         $elements = $pRichText->getRichTextElements();
         foreach ($elements as $element) {
@@ -232,7 +232,7 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
         if ($prefix !== null) {
             $prefix .= ':';
         }
-            
+
         // Loop through rich text elements
         $elements = $pRichText->getRichTextElements();
         foreach ($elements as $element) {
@@ -262,25 +262,25 @@ class PHPExcel_Writer_Excel2007_StringTable extends PHPExcel_Writer_Excel2007_Wr
 
             // rFont
             $objWriter->startElement($prefix.'latin');
-                $objWriter->writeAttribute('typeface', $element->getFont()->getName());
+            $objWriter->writeAttribute('typeface', $element->getFont()->getName());
             $objWriter->endElement();
 
-                // Superscript / subscript
-//                    if ($element->getFont()->getSuperScript() || $element->getFont()->getSubScript()) {
-//                        $objWriter->startElement($prefix.'vertAlign');
-//                        if ($element->getFont()->getSuperScript()) {
-//                            $objWriter->writeAttribute('val', 'superscript');
-//                        } elseif ($element->getFont()->getSubScript()) {
-//                            $objWriter->writeAttribute('val', 'subscript');
-//                        }
-//                        $objWriter->endElement();
-//                    }
-//
+            // Superscript / subscript
+            //                    if ($element->getFont()->getSuperScript() || $element->getFont()->getSubScript()) {
+            //                        $objWriter->startElement($prefix.'vertAlign');
+            //                        if ($element->getFont()->getSuperScript()) {
+            //                            $objWriter->writeAttribute('val', 'superscript');
+            //                        } elseif ($element->getFont()->getSubScript()) {
+            //                            $objWriter->writeAttribute('val', 'subscript');
+            //                        }
+            //                        $objWriter->endElement();
+            //                    }
+            //
             $objWriter->endElement();
 
             // t
             $objWriter->startElement($prefix.'t');
-//                    $objWriter->writeAttribute('xml:space', 'preserve');    //    Excel2010 accepts, Excel2007 complains
+            //                    $objWriter->writeAttribute('xml:space', 'preserve');    //    Excel2010 accepts, Excel2007 complains
             $objWriter->writeRawData(PHPExcel_Shared_String::ControlCharacterPHP2OOXML($element->getText()));
             $objWriter->endElement();
 

@@ -93,7 +93,7 @@ class PHPExcel_Writer_Excel5_BIFFwriter
     {
         $this->_data       = '';
         $this->_datasize   = 0;
-//        $this->limit      = 8224;
+        //        $this->limit      = 8224;
     }
 
     /**

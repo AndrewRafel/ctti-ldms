@@ -27,12 +27,13 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-if (PHP_SAPI == 'cli')
-	die('This example should only be run from a Web Browser');
+if (PHP_SAPI == 'cli') {
+    die('This example should only be run from a Web Browser');
+}
 
 /** Include PHPExcel */
 require_once dirname(__FILE__) . '/../Classes/PHPExcel.php';
@@ -54,12 +55,12 @@ $objPHPExcel = new PHPExcel();
 
 // Set document properties
 $objPHPExcel->getProperties()->setCreator("Maarten Balliauw")
-							 ->setLastModifiedBy("Maarten Balliauw")
-							 ->setTitle("PDF Test Document")
-							 ->setSubject("PDF Test Document")
-							 ->setDescription("Test document for PDF, generated using PHP classes.")
-							 ->setKeywords("pdf php")
-							 ->setCategory("Test result file");
+                             ->setLastModifiedBy("Maarten Balliauw")
+                             ->setTitle("PDF Test Document")
+                             ->setSubject("PDF Test Document")
+                             ->setDescription("Test document for PDF, generated using PHP classes.")
+                             ->setKeywords("pdf php")
+                             ->setCategory("Test result file");
 
 
 // Add some data
@@ -83,14 +84,14 @@ $objPHPExcel->setActiveSheetIndex(0);
 
 
 if (!PHPExcel_Settings::setPdfRenderer(
-		$rendererName,
-		$rendererLibraryPath
-	)) {
-	die(
-		'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
-		'<br />' .
-		'at the top of this script as appropriate for your directory structure'
-	);
+    $rendererName,
+    $rendererLibraryPath
+)) {
+    die(
+        'NOTICE: Please set the $rendererName and $rendererLibraryPath values' .
+        '<br />' .
+        'at the top of this script as appropriate for your directory structure'
+    );
 }
 
 

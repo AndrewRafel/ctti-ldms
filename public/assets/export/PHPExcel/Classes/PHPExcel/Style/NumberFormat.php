@@ -28,44 +28,44 @@
 class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
     /* Pre-defined formats */
-    const FORMAT_GENERAL                 = 'General';
+    public const FORMAT_GENERAL                 = 'General';
 
-    const FORMAT_TEXT                    = '@';
+    public const FORMAT_TEXT                    = '@';
 
-    const FORMAT_NUMBER                  = '0';
-    const FORMAT_NUMBER_00               = '0.00';
-    const FORMAT_NUMBER_COMMA_SEPARATED1 = '#,##0.00';
-    const FORMAT_NUMBER_COMMA_SEPARATED2 = '#,##0.00_-';
+    public const FORMAT_NUMBER                  = '0';
+    public const FORMAT_NUMBER_00               = '0.00';
+    public const FORMAT_NUMBER_COMMA_SEPARATED1 = '#,##0.00';
+    public const FORMAT_NUMBER_COMMA_SEPARATED2 = '#,##0.00_-';
 
-    const FORMAT_PERCENTAGE              = '0%';
-    const FORMAT_PERCENTAGE_00           = '0.00%';
+    public const FORMAT_PERCENTAGE              = '0%';
+    public const FORMAT_PERCENTAGE_00           = '0.00%';
 
-    const FORMAT_DATE_YYYYMMDD2          = 'yyyy-mm-dd';
-    const FORMAT_DATE_YYYYMMDD           = 'yy-mm-dd';
-    const FORMAT_DATE_DDMMYYYY           = 'dd/mm/yy';
-    const FORMAT_DATE_DMYSLASH           = 'd/m/y';
-    const FORMAT_DATE_DMYMINUS           = 'd-m-y';
-    const FORMAT_DATE_DMMINUS            = 'd-m';
-    const FORMAT_DATE_MYMINUS            = 'm-y';
-    const FORMAT_DATE_XLSX14             = 'mm-dd-yy';
-    const FORMAT_DATE_XLSX15             = 'd-mmm-yy';
-    const FORMAT_DATE_XLSX16             = 'd-mmm';
-    const FORMAT_DATE_XLSX17             = 'mmm-yy';
-    const FORMAT_DATE_XLSX22             = 'm/d/yy h:mm';
-    const FORMAT_DATE_DATETIME           = 'd/m/y h:mm';
-    const FORMAT_DATE_TIME1              = 'h:mm AM/PM';
-    const FORMAT_DATE_TIME2              = 'h:mm:ss AM/PM';
-    const FORMAT_DATE_TIME3              = 'h:mm';
-    const FORMAT_DATE_TIME4              = 'h:mm:ss';
-    const FORMAT_DATE_TIME5              = 'mm:ss';
-    const FORMAT_DATE_TIME6              = 'h:mm:ss';
-    const FORMAT_DATE_TIME7              = 'i:s.S';
-    const FORMAT_DATE_TIME8              = 'h:mm:ss;@';
-    const FORMAT_DATE_YYYYMMDDSLASH      = 'yy/mm/dd;@';
+    public const FORMAT_DATE_YYYYMMDD2          = 'yyyy-mm-dd';
+    public const FORMAT_DATE_YYYYMMDD           = 'yy-mm-dd';
+    public const FORMAT_DATE_DDMMYYYY           = 'dd/mm/yy';
+    public const FORMAT_DATE_DMYSLASH           = 'd/m/y';
+    public const FORMAT_DATE_DMYMINUS           = 'd-m-y';
+    public const FORMAT_DATE_DMMINUS            = 'd-m';
+    public const FORMAT_DATE_MYMINUS            = 'm-y';
+    public const FORMAT_DATE_XLSX14             = 'mm-dd-yy';
+    public const FORMAT_DATE_XLSX15             = 'd-mmm-yy';
+    public const FORMAT_DATE_XLSX16             = 'd-mmm';
+    public const FORMAT_DATE_XLSX17             = 'mmm-yy';
+    public const FORMAT_DATE_XLSX22             = 'm/d/yy h:mm';
+    public const FORMAT_DATE_DATETIME           = 'd/m/y h:mm';
+    public const FORMAT_DATE_TIME1              = 'h:mm AM/PM';
+    public const FORMAT_DATE_TIME2              = 'h:mm:ss AM/PM';
+    public const FORMAT_DATE_TIME3              = 'h:mm';
+    public const FORMAT_DATE_TIME4              = 'h:mm:ss';
+    public const FORMAT_DATE_TIME5              = 'mm:ss';
+    public const FORMAT_DATE_TIME6              = 'h:mm:ss';
+    public const FORMAT_DATE_TIME7              = 'i:s.S';
+    public const FORMAT_DATE_TIME8              = 'h:mm:ss;@';
+    public const FORMAT_DATE_YYYYMMDDSLASH      = 'yy/mm/dd;@';
 
-    const FORMAT_CURRENCY_USD_SIMPLE     = '"$"#,##0.00_-';
-    const FORMAT_CURRENCY_USD            = '$#,##0_-';
-    const FORMAT_CURRENCY_EUR_SIMPLE     = '[$EUR ]#,##0.00_-';
+    public const FORMAT_CURRENCY_USD_SIMPLE     = '"$"#,##0.00_-';
+    public const FORMAT_CURRENCY_USD            = '$#,##0_-';
+    public const FORMAT_CURRENCY_EUR_SIMPLE     = '[$EUR ]#,##0.00_-';
 
     /**
      * Excel built-in number formats
@@ -264,7 +264,7 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
         //      40: "#,##0.00_);[Red](#,##0.00)"
         //      47: "mm:ss.0"
         //      KOR fmt 55: "yyyy/mm/dd"
- 
+
         // Built-in format codes
         if (is_null(self::$builtInFormats)) {
             self::$builtInFormats = array();
@@ -444,11 +444,13 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
             'h'  => 'g'
         );
 
-    private static function setLowercaseCallback($matches) {
+    private static function setLowercaseCallback($matches)
+    {
         return mb_strtolower($matches[0]);
     }
 
-    private static function escapeQuotesCallback($matches) {
+    private static function escapeQuotesCallback($matches)
+    {
         return '\\' . implode('\\', str_split($matches[1]));
     }
 
@@ -612,13 +614,13 @@ class PHPExcel_Style_NumberFormat extends PHPExcel_Style_Supervisor implements P
                 break;
             case 3:
                 $format = ($value > 0) ?
-                    $sections[0] : ( ($value < 0) ?
+                    $sections[0] : (($value < 0) ?
                         $sections[1] : $sections[2]);
                 $value = abs($value); // Use the absolute value
                 break;
             case 4:
                 $format = ($value > 0) ?
-                    $sections[0] : ( ($value < 0) ?
+                    $sections[0] : (($value < 0) ?
                         $sections[1] : $sections[2]);
                 $value = abs($value); // Use the absolute value
                 break;

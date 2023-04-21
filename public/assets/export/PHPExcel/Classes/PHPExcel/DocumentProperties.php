@@ -28,12 +28,12 @@
 class PHPExcel_DocumentProperties
 {
     /** constants */
-    const PROPERTY_TYPE_BOOLEAN = 'b';
-    const PROPERTY_TYPE_INTEGER = 'i';
-    const PROPERTY_TYPE_FLOAT   = 'f';
-    const PROPERTY_TYPE_DATE    = 'd';
-    const PROPERTY_TYPE_STRING  = 's';
-    const PROPERTY_TYPE_UNKNOWN = 'u';
+    public const PROPERTY_TYPE_BOOLEAN = 'b';
+    public const PROPERTY_TYPE_INTEGER = 'i';
+    public const PROPERTY_TYPE_FLOAT   = 'f';
+    public const PROPERTY_TYPE_DATE    = 'd';
+    public const PROPERTY_TYPE_STRING  = 's';
+    public const PROPERTY_TYPE_UNKNOWN = 'u';
 
     /**
      * Creator

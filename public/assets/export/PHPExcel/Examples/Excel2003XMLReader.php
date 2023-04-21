@@ -43,7 +43,7 @@ $objPHPExcel = $objReader->load("Excel2003XMLTest.xml");
 
 $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
-echo 'Call time to read Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , PHP_EOL;
+echo 'Call time to read Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , PHP_EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , PHP_EOL;
 

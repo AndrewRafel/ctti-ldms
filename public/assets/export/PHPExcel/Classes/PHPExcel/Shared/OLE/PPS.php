@@ -1,4 +1,5 @@
 <?php
+
 /* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
@@ -157,7 +158,7 @@ class PHPExcel_Shared_OLE_PPS
         //    $stats = fstat($this->_PPS_FILE);
         //    return $stats[7];
         //} else {
-            return strlen($this->_data);
+        return strlen($this->_data);
         //}
     }
 
@@ -184,8 +185,8 @@ class PHPExcel_Shared_OLE_PPS
               . "\x00\x00\x00\x00"                  // 100
               . PHPExcel_Shared_OLE::LocalDate2OLE($this->Time1st)       // 108
               . PHPExcel_Shared_OLE::LocalDate2OLE($this->Time2nd)       // 116
-              . pack("V", isset($this->_StartBlock)?
-                        $this->_StartBlock:0)        // 120
+              . pack("V", isset($this->_StartBlock) ?
+                        $this->_StartBlock : 0)        // 120
               . pack("V", $this->Size)               // 124
               . pack("V", 0);                        // 128
         return $ret;
@@ -207,7 +208,7 @@ class PHPExcel_Shared_OLE_PPS
         } elseif (count($to_save) == 1) {
             $cnt = count($raList);
             // If the first entry, it's the root... Don't clone it!
-            $raList[$cnt] = ( $depth == 0 ) ? $to_save[0] : clone $to_save[0];
+            $raList[$cnt] = ($depth == 0) ? $to_save[0] : clone $to_save[0];
             $raList[$cnt]->No = $cnt;
             $raList[$cnt]->PrevPps = 0xFFFFFFFF;
             $raList[$cnt]->NextPps = 0xFFFFFFFF;
@@ -218,7 +219,7 @@ class PHPExcel_Shared_OLE_PPS
             $aNext = array_slice($to_save, $iPos + 1);
             $cnt   = count($raList);
             // If the first entry, it's the root... Don't clone it!
-            $raList[$cnt] = ( $depth == 0 ) ? $to_save[$iPos] : clone $to_save[$iPos];
+            $raList[$cnt] = ($depth == 0) ? $to_save[$iPos] : clone $to_save[$iPos];
             $raList[$cnt]->No = $cnt;
             $raList[$cnt]->PrevPps = self::_savePpsSetPnt($raList, $aPrev, $depth++);
             $raList[$cnt]->NextPps = self::_savePpsSetPnt($raList, $aNext, $depth++);

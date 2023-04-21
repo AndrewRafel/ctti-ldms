@@ -27,11 +27,11 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 date_default_timezone_set('Europe/London');
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -40,7 +40,7 @@ require_once dirname(__FILE__) . '/../Classes/PHPExcel/IOFactory.php';
 
 
 if (!file_exists("14excel5.xls")) {
-	exit("Please run 14excel5.php first.\n");
+    exit("Please run 14excel5.php first.\n");
 }
 
 echo date('H:i:s') , " Load workbook from Excel5 file" , EOL;
@@ -51,7 +51,7 @@ $objPHPExcel = PHPExcel_IOFactory::load("14excel5.xls");
 $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
-echo 'Call time to load Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to load Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 
@@ -66,7 +66,7 @@ $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
 
 echo date('H:i:s') , " File written to " , str_replace('.php', '.xlsx', pathinfo(__FILE__, PATHINFO_BASENAME)) , EOL;
-echo 'Call time to write Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , EOL;
+echo 'Call time to write Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , EOL;
 

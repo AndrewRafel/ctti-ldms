@@ -7,26 +7,26 @@ use PhpOffice\PhpSpreadsheet\Exception as PhpSpreadsheetException;
 class Alignment extends Supervisor
 {
     // Horizontal alignment styles
-    const HORIZONTAL_GENERAL = 'general';
-    const HORIZONTAL_LEFT = 'left';
-    const HORIZONTAL_RIGHT = 'right';
-    const HORIZONTAL_CENTER = 'center';
-    const HORIZONTAL_CENTER_CONTINUOUS = 'centerContinuous';
-    const HORIZONTAL_JUSTIFY = 'justify';
-    const HORIZONTAL_FILL = 'fill';
-    const HORIZONTAL_DISTRIBUTED = 'distributed'; // Excel2007 only
+    public const HORIZONTAL_GENERAL = 'general';
+    public const HORIZONTAL_LEFT = 'left';
+    public const HORIZONTAL_RIGHT = 'right';
+    public const HORIZONTAL_CENTER = 'center';
+    public const HORIZONTAL_CENTER_CONTINUOUS = 'centerContinuous';
+    public const HORIZONTAL_JUSTIFY = 'justify';
+    public const HORIZONTAL_FILL = 'fill';
+    public const HORIZONTAL_DISTRIBUTED = 'distributed'; // Excel2007 only
 
     // Vertical alignment styles
-    const VERTICAL_BOTTOM = 'bottom';
-    const VERTICAL_TOP = 'top';
-    const VERTICAL_CENTER = 'center';
-    const VERTICAL_JUSTIFY = 'justify';
-    const VERTICAL_DISTRIBUTED = 'distributed'; // Excel2007 only
+    public const VERTICAL_BOTTOM = 'bottom';
+    public const VERTICAL_TOP = 'top';
+    public const VERTICAL_CENTER = 'center';
+    public const VERTICAL_JUSTIFY = 'justify';
+    public const VERTICAL_DISTRIBUTED = 'distributed'; // Excel2007 only
 
     // Read order
-    const READORDER_CONTEXT = 0;
-    const READORDER_LTR = 1;
-    const READORDER_RTL = 2;
+    public const READORDER_CONTEXT = 0;
+    public const READORDER_LTR = 1;
+    public const READORDER_RTL = 2;
 
     /**
      * Horizontal alignment.

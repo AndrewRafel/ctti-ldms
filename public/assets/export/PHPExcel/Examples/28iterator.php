@@ -27,10 +27,10 @@
 
 /** Error reporting */
 error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
+ini_set('display_errors', true);
+ini_set('display_startup_errors', true);
 
-define('EOL',(PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
 
 date_default_timezone_set('Europe/London');
 
@@ -44,37 +44,37 @@ $objPHPExcel = $objReader->load("./templates/28iterators.xlsx");
 
 echo date('H:i:s') , " Iterate worksheets by Row" , EOL;
 foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-	echo 'Worksheet - ' , $worksheet->getTitle() , EOL;
+    echo 'Worksheet - ' , $worksheet->getTitle() , EOL;
 
-	foreach ($worksheet->getRowIterator() as $row) {
-		echo '    Row number - ' , $row->getRowIndex() , EOL;
+    foreach ($worksheet->getRowIterator() as $row) {
+        echo '    Row number - ' , $row->getRowIndex() , EOL;
 
-		$cellIterator = $row->getCellIterator();
-		$cellIterator->setIterateOnlyExistingCells(false); // Loop all cells, even if it is not set
-		foreach ($cellIterator as $cell) {
-			if (!is_null($cell)) {
-				echo '        Cell - ' , $cell->getCoordinate() , ' - ' , $cell->getCalculatedValue() , EOL;
-			}
-		}
-	}
+        $cellIterator = $row->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(false); // Loop all cells, even if it is not set
+        foreach ($cellIterator as $cell) {
+            if (!is_null($cell)) {
+                echo '        Cell - ' , $cell->getCoordinate() , ' - ' , $cell->getCalculatedValue() , EOL;
+            }
+        }
+    }
 }
 
 
 echo date('H:i:s') , " Iterate worksheets by Column" , EOL;
 foreach ($objPHPExcel->getWorksheetIterator() as $worksheet) {
-	echo 'Worksheet - ' , $worksheet->getTitle() , EOL;
+    echo 'Worksheet - ' , $worksheet->getTitle() , EOL;
 
-	foreach ($worksheet->getColumnIterator() as $column) {
-		echo '    Column index - ' , $column->getColumnIndex() , EOL;
+    foreach ($worksheet->getColumnIterator() as $column) {
+        echo '    Column index - ' , $column->getColumnIndex() , EOL;
 
-		$cellIterator = $column->getCellIterator();
-		$cellIterator->setIterateOnlyExistingCells(true); // Loop all cells, even if it is not set
-		foreach ($cellIterator as $cell) {
-			if (!is_null($cell)) {
-				echo '        Cell - ' , $cell->getCoordinate() , ' - ' , $cell->getCalculatedValue() , EOL;
-			}
-		}
-	}
+        $cellIterator = $column->getCellIterator();
+        $cellIterator->setIterateOnlyExistingCells(true); // Loop all cells, even if it is not set
+        foreach ($cellIterator as $cell) {
+            if (!is_null($cell)) {
+                echo '        Cell - ' , $cell->getCoordinate() , ' - ' , $cell->getCalculatedValue() , EOL;
+            }
+        }
+    }
 }
 
 

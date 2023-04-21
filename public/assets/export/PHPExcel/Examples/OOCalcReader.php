@@ -42,7 +42,7 @@ $objPHPExcel = $objReader->load("OOCalcTest.ods");
 
 $callEndTime = microtime(true);
 $callTime = $callEndTime - $callStartTime;
-echo 'Call time to read Workbook was ' , sprintf('%.4f',$callTime) , " seconds" , PHP_EOL;
+echo 'Call time to read Workbook was ' , sprintf('%.4f', $callTime) , " seconds" , PHP_EOL;
 // Echo memory usage
 echo date('H:i:s') , ' Current memory usage: ' , (memory_get_usage(true) / 1024 / 1024) , " MB" , PHP_EOL;
 
@@ -58,4 +58,3 @@ echo date('H:i:s') , " Peak memory usage: " , (memory_get_peak_usage(true) / 102
 
 // Echo done
 echo date('H:i:s') , " Done writing file" , PHP_EOL;
-

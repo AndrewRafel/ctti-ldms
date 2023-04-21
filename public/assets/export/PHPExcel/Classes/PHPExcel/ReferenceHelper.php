@@ -29,10 +29,10 @@ class PHPExcel_ReferenceHelper
 {
     /**    Constants                */
     /**    Regular Expressions      */
-    const REFHELPER_REGEXP_CELLREF      = '((\w*|\'[^!]*\')!)?(?<![:a-z\$])(\$?[a-z]{1,3}\$?\d+)(?=[^:!\d\'])';
-    const REFHELPER_REGEXP_CELLRANGE    = '((\w*|\'[^!]*\')!)?(\$?[a-z]{1,3}\$?\d+):(\$?[a-z]{1,3}\$?\d+)';
-    const REFHELPER_REGEXP_ROWRANGE     = '((\w*|\'[^!]*\')!)?(\$?\d+):(\$?\d+)';
-    const REFHELPER_REGEXP_COLRANGE     = '((\w*|\'[^!]*\')!)?(\$?[a-z]{1,3}):(\$?[a-z]{1,3})';
+    public const REFHELPER_REGEXP_CELLREF      = '((\w*|\'[^!]*\')!)?(?<![:a-z\$])(\$?[a-z]{1,3}\$?\d+)(?=[^:!\d\'])';
+    public const REFHELPER_REGEXP_CELLRANGE    = '((\w*|\'[^!]*\')!)?(\$?[a-z]{1,3}\$?\d+):(\$?[a-z]{1,3}\$?\d+)';
+    public const REFHELPER_REGEXP_ROWRANGE     = '((\w*|\'[^!]*\')!)?(\$?\d+):(\$?\d+)';
+    public const REFHELPER_REGEXP_COLRANGE     = '((\w*|\'[^!]*\')!)?(\$?[a-z]{1,3}):(\$?[a-z]{1,3})';
 
     /**
      * Instance of this class
@@ -252,7 +252,7 @@ class PHPExcel_ReferenceHelper
     {
         $aDataValidationCollection = $pSheet->getDataValidationCollection();
         ($pNumCols > 0 || $pNumRows > 0) ? uksort($aDataValidationCollection, array('PHPExcel_ReferenceHelper','cellReverseSort')) : uksort($aDataValidationCollection, array('PHPExcel_ReferenceHelper','cellSort'));
-        
+
         foreach ($aDataValidationCollection as $key => $value) {
             $newReference = $this->updateCellReference($key, $pBefore, $pNumCols, $pNumRows);
             if ($key != $newReference) {

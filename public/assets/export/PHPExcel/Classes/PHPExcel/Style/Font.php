@@ -28,11 +28,11 @@
 class PHPExcel_Style_Font extends PHPExcel_Style_Supervisor implements PHPExcel_IComparable
 {
     /* Underline types */
-    const UNDERLINE_NONE             = 'none';
-    const UNDERLINE_DOUBLE           = 'double';
-    const UNDERLINE_DOUBLEACCOUNTING = 'doubleAccounting';
-    const UNDERLINE_SINGLE           = 'single';
-    const UNDERLINE_SINGLEACCOUNTING = 'singleAccounting';
+    public const UNDERLINE_NONE             = 'none';
+    public const UNDERLINE_DOUBLE           = 'double';
+    public const UNDERLINE_DOUBLEACCOUNTING = 'doubleAccounting';
+    public const UNDERLINE_SINGLE           = 'single';
+    public const UNDERLINE_SINGLEACCOUNTING = 'singleAccounting';
 
     /**
      * Font Name

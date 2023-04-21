@@ -251,7 +251,7 @@ class EigenvalueDecomposition
                     $p = -$s * $s2 * $c3 * $el1 * $this->e[$l] / $dl1;
                     $this->e[$l] = $s * $p;
                     $this->d[$l] = $c * $p;
-                // Check for convergence.
+                    // Check for convergence.
                 } while (abs($this->e[$l]) > $eps * $tst1);
             }
             $this->d[$l] = $this->d[$l] + $f;

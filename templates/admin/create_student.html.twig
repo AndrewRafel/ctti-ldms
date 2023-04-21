@@ -1,8 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends 'registration/base.html.twig' %}
 
  {% block body %}
+ {{ include('admin/sidebar.html.twig') }}
  
- {{form(form)}}
+ {{form(form)}} </div>
  
  
  {% endblock %}

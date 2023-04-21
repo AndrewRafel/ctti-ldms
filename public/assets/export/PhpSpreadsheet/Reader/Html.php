@@ -19,7 +19,7 @@ class Html extends BaseReader
     /**
      * Sample size to read to determine if it's HTML or not.
      */
-    const TEST_SAMPLE_SIZE = 2048;
+    public const TEST_SAMPLE_SIZE = 2048;
 
     /**
      * Input encoding.
@@ -282,8 +282,8 @@ class Html extends BaseReader
                     //    simply append the text if the cell content is a plain text string
                     $cellContent .= $domText;
                 }
-                //    but if we have a rich text run instead, we need to append it correctly
-                    //    TODO
+            //    but if we have a rich text run instead, we need to append it correctly
+            //    TODO
             } elseif ($child instanceof DOMElement) {
                 $attributeArray = [];
                 foreach ($child->attributes as $attribute) {

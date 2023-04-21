@@ -209,7 +209,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         parent::__construct();
 
         // change BIFFwriter limit for CONTINUE records
-//        $this->_limit = 8224;
+        //        $this->_limit = 8224;
 
 
         $this->_preCalculateFormulas = $preCalculateFormulas;
@@ -245,13 +245,13 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         $maxC = $this->phpSheet->getHighestColumn();
 
         // Determine lowest and highest column and row
-//        $this->firstRowIndex = ($minR > 65535) ? 65535 : $minR;
+        //        $this->firstRowIndex = ($minR > 65535) ? 65535 : $minR;
         $this->lastRowIndex = ($maxR > 65535) ? 65535 : $maxR ;
 
         $this->firstColumnIndex = PHPExcel_Cell::columnIndexFromString($minC);
         $this->lastColumnIndex  = PHPExcel_Cell::columnIndexFromString($maxC);
 
-//        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
+        //        if ($this->firstColumnIndex > 255) $this->firstColumnIndex = 255;
         if ($this->lastColumnIndex > 255) {
             $this->lastColumnIndex = 255;
         }
@@ -389,7 +389,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             $column = PHPExcel_Cell::columnIndexFromString($cell->getColumn()) - 1;
 
             // Don't break Excel!
-//            if ($row + 1 > 65536 or $column + 1 > 256) {
+            //            if ($row + 1 > 65536 or $column + 1 > 256) {
             if ($row > 65535 || $column > 255) {
                 break;
             }
@@ -3137,43 +3137,43 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
         }
         // Alignment
         $flags = 0;
-        $flags |= (1 == $bAlignHz      ? 0x00000001 : 0);
-        $flags |= (1 == $bAlignVt      ? 0x00000002 : 0);
-        $flags |= (1 == $bAlignWrapTx  ? 0x00000004 : 0);
-        $flags |= (1 == $bTxRotation   ? 0x00000008 : 0);
+        $flags |= (1 == $bAlignHz ? 0x00000001 : 0);
+        $flags |= (1 == $bAlignVt ? 0x00000002 : 0);
+        $flags |= (1 == $bAlignWrapTx ? 0x00000004 : 0);
+        $flags |= (1 == $bTxRotation ? 0x00000008 : 0);
         // Justify last line flag
-        $flags |= (1 == 1              ? 0x00000010 : 0);
-        $flags |= (1 == $bIndent       ? 0x00000020 : 0);
-        $flags |= (1 == $bShrinkToFit  ? 0x00000040 : 0);
+        $flags |= (1 == 1 ? 0x00000010 : 0);
+        $flags |= (1 == $bIndent ? 0x00000020 : 0);
+        $flags |= (1 == $bShrinkToFit ? 0x00000040 : 0);
         // Default
-        $flags |= (1 == 1              ? 0x00000080 : 0);
+        $flags |= (1 == 1 ? 0x00000080 : 0);
         // Protection
-        $flags |= (1 == $bProtLocked   ? 0x00000100 : 0);
-        $flags |= (1 == $bProtHidden   ? 0x00000200 : 0);
+        $flags |= (1 == $bProtLocked ? 0x00000100 : 0);
+        $flags |= (1 == $bProtHidden ? 0x00000200 : 0);
         // Border
-        $flags |= (1 == $bBorderLeft   ? 0x00000400 : 0);
-        $flags |= (1 == $bBorderRight  ? 0x00000800 : 0);
-        $flags |= (1 == $bBorderTop    ? 0x00001000 : 0);
+        $flags |= (1 == $bBorderLeft ? 0x00000400 : 0);
+        $flags |= (1 == $bBorderRight ? 0x00000800 : 0);
+        $flags |= (1 == $bBorderTop ? 0x00001000 : 0);
         $flags |= (1 == $bBorderBottom ? 0x00002000 : 0);
-        $flags |= (1 == 1              ? 0x00004000 : 0); // Top left to Bottom right border
-        $flags |= (1 == 1              ? 0x00008000 : 0); // Bottom left to Top right border
+        $flags |= (1 == 1 ? 0x00004000 : 0); // Top left to Bottom right border
+        $flags |= (1 == 1 ? 0x00008000 : 0); // Bottom left to Top right border
         // Pattern
-        $flags |= (1 == $bFillStyle    ? 0x00010000 : 0);
-        $flags |= (1 == $bFillColor    ? 0x00020000 : 0);
-        $flags |= (1 == $bFillColorBg  ? 0x00040000 : 0);
-        $flags |= (1 == 1              ? 0x00380000 : 0);
+        $flags |= (1 == $bFillStyle ? 0x00010000 : 0);
+        $flags |= (1 == $bFillColor ? 0x00020000 : 0);
+        $flags |= (1 == $bFillColorBg ? 0x00040000 : 0);
+        $flags |= (1 == 1 ? 0x00380000 : 0);
         // Font
-        $flags |= (1 == $bFormatFont   ? 0x04000000 : 0);
+        $flags |= (1 == $bFormatFont ? 0x04000000 : 0);
         // Alignment:
-        $flags |= (1 == $bFormatAlign  ? 0x08000000 : 0);
+        $flags |= (1 == $bFormatAlign ? 0x08000000 : 0);
         // Border
         $flags |= (1 == $bFormatBorder ? 0x10000000 : 0);
         // Pattern
-        $flags |= (1 == $bFormatFill   ? 0x20000000 : 0);
+        $flags |= (1 == $bFormatFill ? 0x20000000 : 0);
         // Protection
-        $flags |= (1 == $bFormatProt   ? 0x40000000 : 0);
+        $flags |= (1 == $bFormatProt ? 0x40000000 : 0);
         // Text direction
-        $flags |= (1 == 0              ? 0x80000000 : 0);
+        $flags |= (1 == 0 ? 0x80000000 : 0);
 
         // Data Blocks
         if ($bFormatFont == 1) {
@@ -3417,11 +3417,11 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
             // Options flags for modified font attributes
             $optionsFlags = 0;
             $optionsFlagsBold = ($conditional->getStyle()->getFont()->getBold() == null ? 1 : 0);
-            $optionsFlags |= (1 == $optionsFlagsBold  ? 0x00000002 : 0);
-            $optionsFlags |= (1 == 1                  ? 0x00000008 : 0);
-            $optionsFlags |= (1 == 1                  ? 0x00000010 : 0);
-            $optionsFlags |= (1 == 0                  ? 0x00000020 : 0);
-            $optionsFlags |= (1 == 1                  ? 0x00000080 : 0);
+            $optionsFlags |= (1 == $optionsFlagsBold ? 0x00000002 : 0);
+            $optionsFlags |= (1 == 1 ? 0x00000008 : 0);
+            $optionsFlags |= (1 == 1 ? 0x00000010 : 0);
+            $optionsFlags |= (1 == 0 ? 0x00000020 : 0);
+            $optionsFlags |= (1 == 1 ? 0x00000080 : 0);
             $dataBlockFont .= pack('V', $optionsFlags);
             // Escapement type
             $dataBlockFont .= pack('V', $fontEscapement);
@@ -3971,7 +3971,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
                     $colorIdxBg = 0x3F;
                     break;
                 default:
-                          $colorIdxBg = 0x41;
+                    $colorIdxBg = 0x41;
                     break;
             }
             // Fg Color
@@ -4145,7 +4145,7 @@ class PHPExcel_Writer_Excel5_Worksheet extends PHPExcel_Writer_Excel5_BIFFwriter
                     $colorIdxFg = 0x3F;
                     break;
                 default:
-                          $colorIdxFg = 0x40;
+                    $colorIdxFg = 0x40;
                     break;
             }
             $dataBlockFill = pack('v', $blockFillPatternStyle);

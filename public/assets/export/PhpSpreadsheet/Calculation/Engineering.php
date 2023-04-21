@@ -7,7 +7,7 @@ class Engineering
     /**
      * EULER.
      */
-    const EULER = 2.71828182845904523536;
+    public const EULER = 2.71828182845904523536;
 
     /**
      * Details of the Units of measure that can be used in CONVERTUOM().

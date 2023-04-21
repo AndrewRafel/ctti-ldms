@@ -50,15 +50,14 @@ define('PRECISION', 8.88E-016);
  */
 class PHPExcel_Calculation_Functions
 {
-
     /** constants */
-    const COMPATIBILITY_EXCEL      = 'Excel';
-    const COMPATIBILITY_GNUMERIC   = 'Gnumeric';
-    const COMPATIBILITY_OPENOFFICE = 'OpenOfficeCalc';
+    public const COMPATIBILITY_EXCEL      = 'Excel';
+    public const COMPATIBILITY_GNUMERIC   = 'Gnumeric';
+    public const COMPATIBILITY_OPENOFFICE = 'OpenOfficeCalc';
 
-    const RETURNDATE_PHP_NUMERIC = 'P';
-    const RETURNDATE_PHP_OBJECT  = 'O';
-    const RETURNDATE_EXCEL       = 'E';
+    public const RETURNDATE_PHP_NUMERIC = 'P';
+    public const RETURNDATE_PHP_OBJECT  = 'O';
+    public const RETURNDATE_EXCEL       = 'E';
 
 
     /**
@@ -276,7 +275,7 @@ class PHPExcel_Calculation_Functions
      * @category Error Returns
      * @return    string    #NULL!
      */
-    public static function NULL()
+    public static function null()
     {
         return self::$errorCodes['null'];
     }
@@ -556,7 +555,7 @@ class PHPExcel_Calculation_Functions
             case 'integer':
                 return $value;
             case 'boolean':
-                return (integer) $value;
+                return (int) $value;
             case 'string':
                 //    Errors
                 if ((strlen($value) > 0) && ($value{0} == '#')) {
@@ -602,11 +601,11 @@ class PHPExcel_Calculation_Functions
         $value = self::flattenSingleValue($value);
 
         if (($value === null) || (is_float($value)) || (is_int($value))) {
-                return 1;
+            return 1;
         } elseif (is_bool($value)) {
-                return 4;
+            return 4;
         } elseif (is_array($value)) {
-                return 64;
+            return 64;
         } elseif (is_string($value)) {
             //    Errors
             if ((strlen($value) > 0) && ($value{0} == '#')) {

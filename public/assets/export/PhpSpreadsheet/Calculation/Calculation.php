@@ -17,24 +17,24 @@ class Calculation
     /** Constants                */
     /** Regular Expressions        */
     //    Numeric operand
-    const CALCULATION_REGEXP_NUMBER = '[-+]?\d*\.?\d+(e[-+]?\d+)?';
+    public const CALCULATION_REGEXP_NUMBER = '[-+]?\d*\.?\d+(e[-+]?\d+)?';
     //    String operand
-    const CALCULATION_REGEXP_STRING = '"(?:[^"]|"")*"';
+    public const CALCULATION_REGEXP_STRING = '"(?:[^"]|"")*"';
     //    Opening bracket
-    const CALCULATION_REGEXP_OPENBRACE = '\(';
+    public const CALCULATION_REGEXP_OPENBRACE = '\(';
     //    Function (allow for the old @ symbol that could be used to prefix a function, but we'll ignore it)
-    const CALCULATION_REGEXP_FUNCTION = '@?(?:_xlfn\.)?([A-Z][A-Z0-9\.]*)[\s]*\(';
+    public const CALCULATION_REGEXP_FUNCTION = '@?(?:_xlfn\.)?([A-Z][A-Z0-9\.]*)[\s]*\(';
     //    Cell reference (cell or range of cells, with or without a sheet reference)
-    const CALCULATION_REGEXP_CELLREF = '((([^\s,!&%^\/\*\+<>=-]*)|(\'[^\']*\')|(\"[^\"]*\"))!)?\$?([a-z]{1,3})\$?(\d{1,7})';
+    public const CALCULATION_REGEXP_CELLREF = '((([^\s,!&%^\/\*\+<>=-]*)|(\'[^\']*\')|(\"[^\"]*\"))!)?\$?([a-z]{1,3})\$?(\d{1,7})';
     //    Named Range of cells
-    const CALCULATION_REGEXP_NAMEDRANGE = '((([^\s,!&%^\/\*\+<>=-]*)|(\'[^\']*\')|(\"[^\"]*\"))!)?([_A-Z][_A-Z0-9\.]*)';
+    public const CALCULATION_REGEXP_NAMEDRANGE = '((([^\s,!&%^\/\*\+<>=-]*)|(\'[^\']*\')|(\"[^\"]*\"))!)?([_A-Z][_A-Z0-9\.]*)';
     //    Error
-    const CALCULATION_REGEXP_ERROR = '\#[A-Z][A-Z0_\/]*[!\?]?';
+    public const CALCULATION_REGEXP_ERROR = '\#[A-Z][A-Z0_\/]*[!\?]?';
 
     /** constants */
-    const RETURN_ARRAY_AS_ERROR = 'error';
-    const RETURN_ARRAY_AS_VALUE = 'value';
-    const RETURN_ARRAY_AS_ARRAY = 'array';
+    public const RETURN_ARRAY_AS_ERROR = 'error';
+    public const RETURN_ARRAY_AS_VALUE = 'value';
+    public const RETURN_ARRAY_AS_ARRAY = 'array';
 
     private static $returnArrayAsType = self::RETURN_ARRAY_AS_VALUE;
 
@@ -2489,7 +2489,7 @@ class Calculation
             if ((isset($value[0])) && ($value[0] == '"') && (substr($value, -1) == '"')) {
                 return substr($value, 1, -1);
             }
-            //    Convert numeric errors to NAN error
+        //    Convert numeric errors to NAN error
         } elseif ((is_float($value)) && ((is_nan($value)) || (is_infinite($value)))) {
             return Functions::NAN();
         }
@@ -3123,9 +3123,9 @@ class Calculation
         $stack = new Stack();
         $output = [];
         $expectingOperator = false; //    We use this test in syntax-checking the expression to determine when a
-                                                    //        - is a negation or + is a positive operator rather than an operation
+        //        - is a negation or + is a positive operator rather than an operation
         $expectingOperand = false; //    We use this test in syntax-checking the expression to determine whether an operand
-                                                    //        should be null in a function call
+        //        should be null in a function call
         //    The guts of the lexical parser
         //    Loop through the formula extracting each operator and operand in turn
         while (true) {
@@ -3484,7 +3484,7 @@ class Calculation
                         $this->executeBinaryComparisonOperation($cellID, $operand1, $operand2, $token, $stack);
 
                         break;
-                    //    Binary Operators
+                        //    Binary Operators
                     case ':':            //    Range
                         $sheet1 = $sheet2 = '';
                         if (strpos($operand1Data['reference'], '!') !== false) {
@@ -3604,7 +3604,7 @@ class Calculation
                         break;
                 }
 
-                // if the token is a unary operator, pop one value off the stack, do the operation, and push it back on
+            // if the token is a unary operator, pop one value off the stack, do the operation, and push it back on
             } elseif (($token === '~') || ($token === '%')) {
                 if (($arg = $stack->pop()) === null) {
                     return $this->raiseFormulaError('Internal error - Operand value missing from stack');
@@ -3930,7 +3930,7 @@ class Calculation
                 }
 
                 break;
-            //    Less than
+                //    Less than
             case '<':
                 if ($useLowercaseFirstComparison) {
                     $result = $this->strcmpLowercaseFirst($operand1, $operand2) < 0;
@@ -3939,7 +3939,7 @@ class Calculation
                 }
 
                 break;
-            //    Equality
+                //    Equality
             case '=':
                 if (is_numeric($operand1) && is_numeric($operand2)) {
                     $result = (abs($operand1 - $operand2) < $this->delta);
@@ -3948,7 +3948,7 @@ class Calculation
                 }
 
                 break;
-            //    Greater than or equal
+                //    Greater than or equal
             case '>=':
                 if (is_numeric($operand1) && is_numeric($operand2)) {
                     $result = ((abs($operand1 - $operand2) < $this->delta) || ($operand1 > $operand2));
@@ -3959,7 +3959,7 @@ class Calculation
                 }
 
                 break;
-            //    Less than or equal
+                //    Less than or equal
             case '<=':
                 if (is_numeric($operand1) && is_numeric($operand2)) {
                     $result = ((abs($operand1 - $operand2) < $this->delta) || ($operand1 < $operand2));
@@ -3970,7 +3970,7 @@ class Calculation
                 }
 
                 break;
-            //    Inequality
+                //    Inequality
             case '<>':
                 if (is_numeric($operand1) && is_numeric($operand2)) {
                     $result = (abs($operand1 - $operand2) > 1E-14);
@@ -4054,17 +4054,17 @@ class Calculation
                         $result = $operand1 + $operand2;
 
                         break;
-                    //    Subtraction
+                        //    Subtraction
                     case '-':
                         $result = $operand1 - $operand2;
 
                         break;
-                    //    Multiplication
+                        //    Multiplication
                     case '*':
                         $result = $operand1 * $operand2;
 
                         break;
-                    //    Division
+                        //    Division
                     case '/':
                         if ($operand2 == 0) {
                             //    Trap for Divide by Zero error
@@ -4073,10 +4073,10 @@ class Calculation
 
                             return false;
                         }
-                            $result = $operand1 / $operand2;
+                        $result = $operand1 / $operand2;
 
                         break;
-                    //    Power
+                        //    Power
                     case '^':
                         $result = pow($operand1, $operand2);
 

@@ -6,20 +6,20 @@ use PhpOffice\PhpSpreadsheet\Cell\Cell;
 
 class Functions
 {
-    const PRECISION = 8.88E-016;
+    public const PRECISION = 8.88E-016;
 
     /**
      * 2 / PI.
      */
-    const M_2DIVPI = 0.63661977236758134307553505349006;
+    public const M_2DIVPI = 0.63661977236758134307553505349006;
 
     /** constants */
-    const COMPATIBILITY_EXCEL = 'Excel';
-    const COMPATIBILITY_GNUMERIC = 'Gnumeric';
-    const COMPATIBILITY_OPENOFFICE = 'OpenOfficeCalc';
-    const RETURNDATE_PHP_NUMERIC = 'P';
-    const RETURNDATE_PHP_OBJECT = 'O';
-    const RETURNDATE_EXCEL = 'E';
+    public const COMPATIBILITY_EXCEL = 'Excel';
+    public const COMPATIBILITY_GNUMERIC = 'Gnumeric';
+    public const COMPATIBILITY_OPENOFFICE = 'OpenOfficeCalc';
+    public const RETURNDATE_PHP_NUMERIC = 'P';
+    public const RETURNDATE_PHP_OBJECT = 'O';
+    public const RETURNDATE_EXCEL = 'E';
 
     /**
      * Compatibility mode to use for error checking and responses.

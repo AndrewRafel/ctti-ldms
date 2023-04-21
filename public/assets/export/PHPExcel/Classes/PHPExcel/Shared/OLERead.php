@@ -33,33 +33,33 @@ class PHPExcel_Shared_OLERead
     private $data = '';
 
     // OLE identifier
-    const IDENTIFIER_OLE                    = IDENTIFIER_OLE;
+    public const IDENTIFIER_OLE                    = IDENTIFIER_OLE;
 
     // Size of a sector = 512 bytes
-    const BIG_BLOCK_SIZE                    = 0x200;
+    public const BIG_BLOCK_SIZE                    = 0x200;
 
     // Size of a short sector = 64 bytes
-    const SMALL_BLOCK_SIZE                  = 0x40;
+    public const SMALL_BLOCK_SIZE                  = 0x40;
 
     // Size of a directory entry always = 128 bytes
-    const PROPERTY_STORAGE_BLOCK_SIZE       = 0x80;
+    public const PROPERTY_STORAGE_BLOCK_SIZE       = 0x80;
 
     // Minimum size of a standard stream = 4096 bytes, streams smaller than this are stored as short streams
-    const SMALL_BLOCK_THRESHOLD             = 0x1000;
+    public const SMALL_BLOCK_THRESHOLD             = 0x1000;
 
     // header offsets
-    const NUM_BIG_BLOCK_DEPOT_BLOCKS_POS    = 0x2c;
-    const ROOT_START_BLOCK_POS              = 0x30;
-    const SMALL_BLOCK_DEPOT_BLOCK_POS       = 0x3c;
-    const EXTENSION_BLOCK_POS               = 0x44;
-    const NUM_EXTENSION_BLOCK_POS           = 0x48;
-    const BIG_BLOCK_DEPOT_BLOCKS_POS        = 0x4c;
+    public const NUM_BIG_BLOCK_DEPOT_BLOCKS_POS    = 0x2c;
+    public const ROOT_START_BLOCK_POS              = 0x30;
+    public const SMALL_BLOCK_DEPOT_BLOCK_POS       = 0x3c;
+    public const EXTENSION_BLOCK_POS               = 0x44;
+    public const NUM_EXTENSION_BLOCK_POS           = 0x48;
+    public const BIG_BLOCK_DEPOT_BLOCKS_POS        = 0x4c;
 
     // property storage offsets (directory offsets)
-    const SIZE_OF_NAME_POS                  = 0x40;
-    const TYPE_POS                          = 0x42;
-    const START_BLOCK_POS                   = 0x74;
-    const SIZE_POS                          = 0x78;
+    public const SIZE_OF_NAME_POS                  = 0x40;
+    public const TYPE_POS                          = 0x42;
+    public const START_BLOCK_POS                   = 0x74;
+    public const SIZE_POS                          = 0x78;
 
 
 
@@ -118,8 +118,8 @@ class PHPExcel_Shared_OLERead
         }
 
         for ($i = 0; $i < $bbdBlocks; ++$i) {
-              $bigBlockDepotBlocks[$i] = self::getInt4d($this->data, $pos);
-              $pos += 4;
+            $bigBlockDepotBlocks[$i] = self::getInt4d($this->data, $pos);
+            $pos += 4;
         }
 
         for ($j = 0; $j < $this->numExtensionBlocks; ++$j) {
@@ -185,7 +185,7 @@ class PHPExcel_Shared_OLERead
             $block = $this->props[$stream]['startBlock'];
 
             while ($block != -2) {
-                  $pos = $block * self::SMALL_BLOCK_SIZE;
+                $pos = $block * self::SMALL_BLOCK_SIZE;
                 $streamData .= substr($rootdata, $pos, self::SMALL_BLOCK_SIZE);
 
                 $block = self::getInt4d($this->smallBlockChain, $block*4);
@@ -280,13 +280,13 @@ class PHPExcel_Shared_OLERead
 
             // Summary information
             if ($name == chr(5) . 'SummaryInformation') {
-//                echo 'Summary Information<br />';
+                //                echo 'Summary Information<br />';
                 $this->summaryInformation = count($this->props) - 1;
             }
 
             // Additional Document Summary information
             if ($name == chr(5) . 'DocumentSummaryInformation') {
-//                echo 'Document Summary Information<br />';
+                //                echo 'Document Summary Information<br />';
                 $this->documentSummaryInformation = count($this->props) - 1;
             }
 

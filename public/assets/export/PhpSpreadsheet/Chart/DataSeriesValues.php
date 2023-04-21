@@ -9,8 +9,8 @@ use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
 class DataSeriesValues
 {
-    const DATASERIES_TYPE_STRING = 'String';
-    const DATASERIES_TYPE_NUMBER = 'Number';
+    public const DATASERIES_TYPE_STRING = 'String';
+    public const DATASERIES_TYPE_NUMBER = 'Number';
 
     private static $dataTypeValues = [
         self::DATASERIES_TYPE_STRING,

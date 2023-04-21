@@ -363,7 +363,7 @@ class Slk extends BaseReader
                     $cellData = Calculation::unwrapResult($cellData);
                     $spreadsheet->getActiveSheet()->getCell($columnLetter . $row)->setCalculatedValue($cellData);
                 }
-                //    Read cell formatting
+            //    Read cell formatting
             } elseif ($dataType == 'F') {
                 $formatStyle = $columnWidth = $styleSettings = '';
                 $styleData = [];
