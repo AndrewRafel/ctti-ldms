@@ -108,6 +108,32 @@ class AdminController extends AbstractController
         // in the template, print things with {{ product.name }}
         // return $this->render('product/show.html.twig', ['product' => $product]);
     }
+
+    #[Route('/admin/news', name: 'news_show')]
+    public function showNews(EntityManagerInterface $entityManager): Response
+    {
+        $news = $entityManager->getRepository(News::class)->findAll();
+
+        if (!$news) 
+        {
+            throw $this->createNotFoundException( 'No news found ' );
+        }
+
+        return $this->render('admin/news.html.twig', ['news' => $news,]);
+    }
+    
+    #[Route('/admin/users', name: 'user_show')]
+    public function showUsers(EntityManagerInterface $entityManager): Response
+    {
+        $users = $entityManager->getRepository(User::class)->findAll();
+
+        if (!$users) 
+        {
+            throw $this->createNotFoundException( 'No news found ' );
+        }
+
+        return $this->render('admin/users.html.twig', ['users' => $users]);
+    }
     
     #[Route('/admin/remove_user/{id}', name: 'user_remove')]
     public function removeUser(EntityManagerInterface $entityManager, User $user)

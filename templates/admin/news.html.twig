@@ -1,0 +1,18 @@
+{% extends 'registration/base.html.twig' %}
+{% block body %}
+
+<section class="about-upper-section" itemprop="mainContentofPage">
+<div class="container">
+    {% for item in news %}
+				<article class="who-we-are">
+					<h2 class="top-heading">{{item.heading}}</h2>
+					<p style=" text-align: justify;">{{item.content}}</p>
+                    <p style=" text-align: justify;">{{item.date}}</p>
+				</article>
+    {% else %}
+        
+    {% endfor %}
+    </div>
+    </section>               
+
+{% endblock %}
