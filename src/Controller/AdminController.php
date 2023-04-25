@@ -79,7 +79,7 @@ class AdminController extends AbstractController
     #[Route('/admin/add_student', name: 'add_student')]
     public function createStudent(EntityManagerInterface $entityManager): Response
     {
-        $student=new Student();
+        $student=new Student(); 
         $form= $this->createForm(type:StudentType::class,data:$student);
          
         if($form->isSubmitted())
@@ -103,11 +103,25 @@ class AdminController extends AbstractController
         }
 
         return new Response('Check out this user: '.$user->getEmail());
-
+ 
         // or render a template
         // in the template, print things with {{ product.name }}
         // return $this->render('product/show.html.twig', ['product' => $product]);
-    }
+    } 
+
+     
+    #[Route('/admin/news', name: 'news_show')]
+    public function showNews(EntityManagerInterface $entityManager): Response
+    {
+        $news = $entityManager->getRepository(News::class)->findAll();
+
+        if (!$news) 
+        {
+            throw $this->createNotFoundException( 'No News Found');
+        } 
+
+      return $this->render('product/show.html.twig', ['news' => $news]);
+    } 
     
     #[Route('/admin/remove_user/{id}', name: 'user_remove')]
     public function removeUser(EntityManagerInterface $entityManager, User $user)
