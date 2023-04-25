@@ -14,10 +14,8 @@ class PagesController extends AbstractController
     #[Route('/', name: 'home')]
     public function home(EntityManagerInterface $entityManager): Response
     {
-       // $id=1;
-        $news = $entityManager->getRepository(News::class);
-        $program=$entityManager->getRepository(Program::class);
-        return $this->render('pages/home.html.twig',['news'=>$news, 'program'=>$program]);
+
+        return $this->render('pages/home.html.twig');
     }
 
     #[Route('/about', name: 'about')]
