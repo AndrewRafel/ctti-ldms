@@ -152,4 +152,14 @@ class AdminController extends AbstractController
     $entityManager->flush();
     return $this->redirect($this->generateUrl(route:'dashboard'));
    }
+
+
+   #[Route('/forgot_password', name: 'reset_password')]
+   public function resetPassword(EntityManagerInterface $entityManager)
+   {
+   $news=new News();
+   $entityManager->remove($news);
+   $entityManager->flush();
+   return $this->redirect($this->generateUrl(route:'dashboard'));
+  }
 }
