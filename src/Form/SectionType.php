@@ -2,28 +2,25 @@
 
 namespace App\Form;
 
-use App\Entity\News;
+use App\Entity\Section;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class NewsType extends AbstractType
+class SectionType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('heading')
-            ->add('content')
-            ->add('date')
-            ->add('submit',SubmitType::class, ['label' => 'Create News',])
+            ->add('section_code')
+            ->add('section_name')
         ;
     }
 
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => News::class,
+            'data_class' => Section::class,
         ]);
     }
 }

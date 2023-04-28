@@ -4,21 +4,23 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Entity\User;
+use App\Entity\About;
+use App\Form\NewsType;
+use App\Form\UserType;
 use App\Entity\Faculty;
 use App\Entity\Program;
 use App\Entity\Student;
-use App\Form\StudentType;
+use App\Form\AboutType;
 use App\Form\FacultyType;
-use App\Form\NewsType;
-use App\Form\UserType;
 use App\Form\ProgramType;
+use App\Form\StudentType;
+use function PHPSTORM_META\type;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use function PHPSTORM_META\type;
 
 class AdminController extends AbstractController
 {
@@ -41,7 +43,89 @@ class AdminController extends AbstractController
             $entityManager->flush();
         }
         return $this->render('admin/create_news.html.twig', ['form'=>$form->createView()]);
+    }
 
+    #[Route('/admin/update_news', name: 'update_news')]
+    public function UpdateNews(EntityManagerInterface $entityManager, Request $request, int $id): Response
+    {
+        $news=new News();
+        $form= $this->createForm(type:NewsType::class,data:$news);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($news);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_news.html.twig', ['form'=>$form->createView()]);
+    }
+
+    #[Route('/admin/news', name: 'news_show')]
+    public function showNews(EntityManagerInterface $entityManager): Response
+    {
+        $news = $entityManager->getRepository(News::class)->findAll();
+
+        if (!$news) 
+        {
+            throw $this->createNotFoundException( 'No news found ' );
+        }
+
+        return $this->render('admin/news.html.twig', ['news' => $news,]);
+    }
+
+
+    #[Route('/admin/remove_news', name: 'delete_event')]
+    public function removeNews(EntityManagerInterface $entityManager)
+    {
+        $news=new News();
+        $entityManager->remove($news);
+        $entityManager->flush();
+        return $this->redirect($this->generateUrl(route:'dashboard'));
+    }
+
+
+    #[Route('/admin/about', name: 'create_about')]
+    public function CreateAbout(EntityManagerInterface $entityManager, Request $request)
+    {
+      
+        $about=new About();
+        $form= $this->createForm(type:AboutType::class,data:$about);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($about);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_about.html.twig', ['aboutForm'=>$form->createView()]);
+    }
+
+    #[Route('/admin/update_about', name: 'update_about')]
+    public function UpdateAbout(EntityManagerInterface $entityManager, Request $request, int $id=1): Response
+    {
+        $about=new About();
+        $form= $this->createForm(type:AboutType::class,data:$about);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($about);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_about.html.twig', ['form'=>$form->createView()]);
+    }
+
+
+    #[Route('/admin/add_program', name: 'create_program')]
+    public function CreateProgram(EntityManagerInterface $entityManager, Request $request)
+    {
+      
+        $program=new program();
+        $form= $this->createForm(type:ProgramType::class,data:$program);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($program);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_program.html.twig', ['programForm'=>$form->createView()]);
     }
 
     #[Route('/admin/user/{id}', name: 'user_show')]
@@ -61,18 +145,7 @@ class AdminController extends AbstractController
         // return $this->render('product/show.html.twig', ['product' => $product]);
     }
 
-    #[Route('/admin/news', name: 'news_show')]
-    public function showNews(EntityManagerInterface $entityManager): Response
-    {
-        $news = $entityManager->getRepository(News::class)->findAll();
-
-        if (!$news) 
-        {
-            throw $this->createNotFoundException( 'No news found ' );
-        }
-
-        return $this->render('admin/news.html.twig', ['news' => $news,]);
-    }
+  
     
     #[Route('/admin/users', name: 'user_show')]
     public function showUsers(EntityManagerInterface $entityManager): Response
@@ -96,12 +169,4 @@ class AdminController extends AbstractController
         return $this->redirect($this->generateUrl(route:'dashboard'));
     }
 
-    #[Route('/admin/remove_news', name: 'delete_event')]
-    public function removeNews(EntityManagerInterface $entityManager)
-    {
-    $news=new News();
-    $entityManager->remove($news);
-    $entityManager->flush();
-    return $this->redirect($this->generateUrl(route:'dashboard'));
-   }
 }

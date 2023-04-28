@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\News;
 use App\Entity\Program;
+use App\Entity\About;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -19,9 +20,10 @@ class PagesController extends AbstractController
     }
 
     #[Route('/about', name: 'about')]
-    public function about (): Response
+    public function about (EntityManagerInterface $entityManager): Response
     {
-        return $this->render('pages/about.html.twig');
+        $info = $entityManager->getRepository(About::class)->findAll();
+        return $this->render('pages/about.html.twig', ['about'=>$info]);
     }
 
     #[Route('/contact', name: 'contact')]
