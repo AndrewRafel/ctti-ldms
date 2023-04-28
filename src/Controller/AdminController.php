@@ -18,7 +18,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-
 use function PHPSTORM_META\type;
 
 class AdminController extends AbstractController
@@ -30,23 +29,6 @@ class AdminController extends AbstractController
 
     return $this->render('admin/dashboard.html.twig',['currentUser'=>$user]);
 }
-
-    #[Route('/admin/add_section', name: 'add_section')]
-    public function createFaculty(EntityManagerInterface $entityManager, Request $request): Response
-    {
-        $section=new Faculty();
-        $form= $this->createForm(type:FacultyType::class, data:$section);
-        $form->handleRequest($request);
-        if($form->isSubmitted())
-        {
-            $entityManager->persist($section);
-            $entityManager->flush();
-            dump($request);
-        }
-        return $this->render('admin/create_section.html.twig', ['form'=>$form->createView()]);
-
-    }
-
     #[Route('/admin/add_news', name: 'add_news')]
     public function createNews(EntityManagerInterface $entityManager, Request $request): Response
     {
@@ -62,36 +44,6 @@ class AdminController extends AbstractController
 
     }
 
-    #[Route('/admin/add_program', name: 'add_program')]
-    public function createProgram(EntityManagerInterface $entityManager, Request $request): Response
-    {
-        $program=new Program();
-        $form= $this->createForm(type:ProgramType::class,data:$program);
-        $form->handleRequest($request);
-        if($form->isSubmitted())
-        {
-            $entityManager->persist($program);
-            $entityManager->flush();
-        }
-        return $this->render('admin/create_program.html.twig', ['form'=>$form->createView()]);
-
-    }
-    #[Route('/admin/add_student', name: 'add_student')]
-    public function createStudent(EntityManagerInterface $entityManager): Response
-    {
-        $student=new Student();
-        $form= $this->createForm(type:StudentType::class,data:$student);
-         
-        if($form->isSubmitted())
-        {
-            $entityManager->persist($student);
-            $entityManager->flush();
-        }
-        return $this->render('admin/create_student.html.twig', ['form'=>$form->createView()]);
-
-     
-    }
-    
     #[Route('/admin/user/{id}', name: 'user_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response
     {
@@ -152,14 +104,4 @@ class AdminController extends AbstractController
     $entityManager->flush();
     return $this->redirect($this->generateUrl(route:'dashboard'));
    }
-
-
-   #[Route('/forgot_password', name: 'reset_password')]
-   public function resetPassword(EntityManagerInterface $entityManager)
-   {
-   $news=new News();
-   $entityManager->remove($news);
-   $entityManager->flush();
-   return $this->redirect($this->generateUrl(route:'dashboard'));
-  }
 }
