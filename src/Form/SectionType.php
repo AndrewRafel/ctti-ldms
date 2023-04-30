@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Section;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -14,6 +15,7 @@ class SectionType extends AbstractType
         $builder
             ->add('section_code')
             ->add('section_name')
+            ->add('submit', SubmitType::class, ['label'=>"Create Section"])
         ;
     }
 

@@ -37,6 +37,9 @@ class Program
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'programs')]
+    private ?Section $section = null;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
@@ -147,5 +150,22 @@ class Program
         $this->description = $description;
 
         return $this;
+    }
+
+    public function getSection(): ?Section
+    {
+        return $this->section;
+    }
+
+    public function setSection(?Section $section): self
+    {
+        $this->section = $section;
+
+        return $this;
+    }
+
+    public function __toString() 
+    {
+        return $this->program_name;
     }
 }

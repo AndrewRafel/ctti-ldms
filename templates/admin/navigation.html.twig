@@ -40,8 +40,8 @@
 				</a>
 				<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
-						<a class="collapse-item" href="">Add Student</a>
-						<a class="collapse-item" href="">View Student(s)</a>
+						<a class="collapse-item" href="{{path('create_student')}}">Add Student</a>
+						<a class="collapse-item" href="{{path('view_students')}}">View Student(s)</a>
 					</div>
 				</div>
 			</li>
@@ -54,7 +54,7 @@
 				<div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
 					<div class="bg-white py-2 collapse-inner rounded">
 						<a class="collapse-item" href="{{path('create_program')}}">Add Program</a>
-						<a class="collapse-item" href="">View Program(s)</a>
+						<a class="collapse-item" href="{{path('view_programs')}}">View Program(s)</a>
 					</div>
 				</div>
 			</li>
@@ -74,8 +74,8 @@
 						<a class="collapse-item" href="{{path('news_show')}}">View News</a>
 						<div class="collapse-divider"></div>
 						<h6 class="collapse-header">Faculty:</h6>
-						<a class="collapse-item" href="">Add Section</a>
-						<a class="collapse-item" href="">View Section(s)</a>
+						<a class="collapse-item" href="{{path('create_section')}}">Add Section</a>
+						<a class="collapse-item" href="{{path('section_show')}}">View Section(s)</a>
 					</div>
 				</div>
 			</li>

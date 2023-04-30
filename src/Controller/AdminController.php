@@ -7,12 +7,12 @@ use App\Entity\User;
 use App\Entity\About;
 use App\Form\NewsType;
 use App\Form\UserType;
-use App\Entity\Faculty;
 use App\Entity\Program;
+use App\Entity\Section;
 use App\Entity\Student;
 use App\Form\AboutType;
-use App\Form\FacultyType;
 use App\Form\ProgramType;
+use App\Form\SectionType;
 use App\Form\StudentType;
 use function PHPSTORM_META\type;
 use Doctrine\ORM\EntityManagerInterface;
@@ -21,6 +21,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class AdminController extends AbstractController
 {
@@ -69,17 +70,17 @@ class AdminController extends AbstractController
             throw $this->createNotFoundException( 'No news found ' );
         }
 
-        return $this->render('admin/news.html.twig', ['news' => $news,]);
+        return $this->render('admin/show_news.html.twig', ['news' => $news,]);
     }
 
 
-    #[Route('/admin/remove_news', name: 'delete_event')]
-    public function removeNews(EntityManagerInterface $entityManager)
+    #[Route('/admin/remove_news/{id}', name: 'delete_news')]
+    public function removeNews($id,EntityManagerInterface $entityManager):Response
     {
         $news=new News();
         $entityManager->remove($news);
         $entityManager->flush();
-        return $this->redirect($this->generateUrl(route:'dashboard'));
+        return $this->redirect($this->generateUrl(route:'news_show'));
     }
 
 
@@ -122,11 +123,81 @@ class AdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted())
         {
+            $section=$form->get('section')->getData();
             $entityManager->persist($program);
             $entityManager->flush();
         }
         return $this->render('admin/create_program.html.twig', ['programForm'=>$form->createView()]);
     }
+
+    #[Route('/admin/view_programs', name: 'view_programs')]
+    public function showPrograms(EntityManagerInterface $entityManager): Response
+    {
+        $programs = $entityManager->getRepository(Program::class)->findAll();
+
+        if (!$programs) 
+        {
+            throw $this->createNotFoundException( 'No programs found ' );
+        }
+
+        return $this->render('admin/show_programs.html.twig', ['programs' => $programs,]);
+    }
+    #[Route('/admin/add_section', name: 'create_section')]
+    public function CreateSection(EntityManagerInterface $entityManager, Request $request)
+    {
+      
+        $section=new Section();
+        $form= $this->createForm(type:SectionType::class,data:$section);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($section);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_section.html.twig', ['sectionForm'=>$form->createView()]);
+    }
+
+    #[Route('/admin/sections', name: 'section_show')]
+    public function showSections(EntityManagerInterface $entityManager): Response
+    {
+        $sections = $entityManager->getRepository(Section::class)->findAll();
+
+        if (!$sections) 
+        {
+            throw $this->createNotFoundException( 'No sections found' );
+        }
+
+        return $this->render('admin/show_sections.html.twig', ['sections' => $sections,]);
+    }
+
+    #[Route('/admin/add_student', name: 'create_student')]
+    public function CreateStudent(EntityManagerInterface $entityManager, Request $request)
+    {
+      
+        $student=new Student();
+        $form= $this->createForm(type:StudentType::class,data:$student);
+        $form->handleRequest($request);
+        if($form->isSubmitted())
+        {
+            $entityManager->persist($student);
+            $entityManager->flush();
+        }
+        return $this->render('admin/create_student.html.twig', ['studentForm'=>$form->createView()]);
+    }
+
+    #[Route('/admin/view_students', name: 'view_students')]
+    public function showStudents(EntityManagerInterface $entityManager): Response
+    {
+        $students = $entityManager->getRepository(Student::class)->findAll();
+
+        if (!$students) 
+        {
+            throw $this->createNotFoundException( 'No students found ' );
+        }
+
+        return $this->render('admin/show_students.html.twig', ['students' => $students,]);
+    }
+
 
     #[Route('/admin/user/{id}', name: 'user_show')]
     public function show(EntityManagerInterface $entityManager, int $id): Response

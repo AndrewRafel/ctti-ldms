@@ -198,4 +198,9 @@ class Student
 
         return $this;
     }
+
+    public function __toString() 
+    {
+        return $this->student_date_of_birth;
+    }
 }

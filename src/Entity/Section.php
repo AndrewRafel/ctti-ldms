@@ -24,9 +24,13 @@ class Section
     #[ORM\OneToMany(mappedBy: 'student_section', targetEntity: Student::class)]
     private Collection $students;
 
+    #[ORM\OneToMany(mappedBy: 'section', targetEntity: Program::class)]
+    private Collection $programs;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->programs = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -86,5 +90,40 @@ class Section
         }
 
         return $this;
+    }
+
+    /**
+     * @return Collection<int, Program>
+     */
+    public function getPrograms(): Collection
+    {
+        return $this->programs;
+    }
+
+    public function addProgram(Program $program): self
+    {
+        if (!$this->programs->contains($program)) {
+            $this->programs->add($program);
+            $program->setSection($this);
+        }
+
+        return $this;
+    }
+
+    public function removeProgram(Program $program): self
+    {
+        if ($this->programs->removeElement($program)) {
+            // set the owning side to null (unless already changed)
+            if ($program->getSection() === $this) {
+                $program->setSection(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString() 
+    {
+        return $this->section_name;
     }
 }

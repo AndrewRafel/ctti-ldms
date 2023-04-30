@@ -1,30 +1,36 @@
 {% extends 'registration/base.html.twig' %}
 {% block body %}
 {{ include('admin/navigation.html.twig') }}
-<div class="container">
+<div class="container-fluid">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-primary">Faculties</h6>
+                            <h6 class="m-0 font-weight-bold text-primary">Programs</h6>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
-                                            <th>ID</th>
-                                            <th>CODE</th>
-                                            <th>NAME</th>
-                                            <th>Actions</th>
+                                            <th>Code</th>
+                                            <th>Name</th>
+                                            <th>Duration</th>
+                                            <th>Certification</th>
+                                            <th>Level</th>
+                                             <th>Section</th>
+                                             <th>Actions</th>
                                         </tr>
                                     </thead>
-                                      {% for section in sections %}
+                                      {% for program in programs %}
                                     <tbody>
                                         <tr>
-                                            <td>{{section.getId}}</td>
-                                            <td>{{section.getSectionCode}}</td>
-                                            <td>{{section.getSectionName}}</td>
+                                            <td>{{program.getProgramCode}}</td>
+                                              <td>{{program.getProgramName}}</td>
+                                                <td>{{program.getProgramDuration}}</td>
+                                                  <td>{{program.getProgramCertification}}</td>
+                                                    <td>{{program.getProgramType}}</td>
+                                                    <td>{{program.getSection}}</td> 
                                             <td width="100">
-                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="#delete_user<?php echo $id; ?>" data-toggle="modal"  class="btn btn-danger"></a>
+                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="" data-toggle="modal"  class="btn btn-danger"></a>
                                             <a rel="tooltip"  title="Edit" id="e<?php echo $id; ?>" href="#edit<?php echo $id; ?>" data-toggle="modal" class="btn btn-success"></a>
                                             </td>
                                         </tr>

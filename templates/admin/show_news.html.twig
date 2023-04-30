@@ -1,5 +1,6 @@
 {% extends 'registration/base.html.twig' %}
 {% block body %}
+{{ include('admin/navigation.html.twig') }}
 <div class="container">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -10,6 +11,7 @@
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Headline</th>
                                             <th>Content</th>
                                             <th>Date</th>
@@ -19,11 +21,12 @@
                                       {% for item in news %}
                                     <tbody>
                                         <tr>
+                                            <td>{{item.getId}}</td>
                                             <td>{{item.heading}}</td>
                                             <td>{{item.content}}</td>
                                             <td>{{item.date}}</td>
                                             <td width="100">
-                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="#delete_user<?php echo $id; ?>" data-toggle="modal"  class="btn btn-danger"></a>
+                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="" data-toggle="modal"  class="btn btn-danger"></a>
                                             <a rel="tooltip"  title="Edit" id="e<?php echo $id; ?>" href="#edit<?php echo $id; ?>" data-toggle="modal" class="btn btn-success"></a>
                                             </td>
                                         </tr>
