@@ -7,7 +7,7 @@
                             <h6 class="m-0 font-weight-bold text-primary">Students</h6>
                         </div>
                         <div class="card-body">
-                            <div class="table-responsive">
+                        <div class="table-responsive">
                                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                     <thead>
                                         <tr>
@@ -21,7 +21,6 @@
                                             <th>Secion</th>
                                             <th>Sponsor</th>
                                             <th>Gender</th>
-                                        
                                             <th>Disability</th>
                                              <th>Actions</th>
                                         </tr>
@@ -39,7 +38,6 @@
                                             <td>{{student.getStudentSection}}</td>
                                             <td>{{student.getStudentSponsor}}</td>
                                             <td>{{student.getStudentGender}}</td>
-                                            
                                             <td>{{student.getStudentDisability}}</td>
                                             <td width="100">
                                             <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="" data-toggle="modal"  class="btn btn-danger"></a>
@@ -48,7 +46,7 @@
                                         </tr>
                                     </tbody>
                                       {% else %}
-
+                                       <h6>{{message}}</h6>
                                      {% endfor %}
                                 </table>
                             </div>

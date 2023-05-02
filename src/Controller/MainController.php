@@ -5,16 +5,8 @@ namespace App\Controller;
 use App\Entity\News;
 use App\Entity\User;
 use App\Entity\About;
-use App\Form\NewsType;
-use App\Form\UserType;
+use App\Entity\Event;
 use App\Entity\Program;
-use App\Entity\Section;
-use App\Entity\Student;
-use App\Form\AboutType;
-use App\Form\ProgramType;
-use App\Form\SectionType;
-use App\Form\StudentType;
-use function PHPSTORM_META\type;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -38,7 +30,9 @@ class MainController extends AbstractController
     {
         $program = $entityManager->getRepository(Program::class)->findAll();
         $news = $entityManager->getRepository(News::class)->findAll();
-        return $this->render('pages/home.html.twig', ['programs'=>$program,'news'=>$news]);
+        $events = $entityManager->getRepository(Event::class)->findAll();
+        $about = $entityManager->getRepository(About::class)->findAll();
+        return $this->render('pages/home.html.twig', ['programs'=>$program,'news'=>$news,'events'=>$events,'about'=>$about]);
     }
 
 
