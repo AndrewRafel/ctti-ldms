@@ -40,9 +40,13 @@ class Program
     #[ORM\ManyToOne(inversedBy: 'programs')]
     private ?Section $section = null;
 
+    #[ORM\OneToMany(mappedBy: 'staff_program', targetEntity: Staff::class)]
+    private Collection $staff_phone_number;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
+        $this->staff_phone_number = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -167,5 +171,35 @@ class Program
     public function __toString() 
     {
         return $this->program_name;
+    }
+
+    /**
+     * @return Collection<int, Staff>
+     */
+    public function getStaffPhoneNumber(): Collection
+    {
+        return $this->staff_phone_number;
+    }
+
+    public function addStaffPhoneNumber(Staff $staffPhoneNumber): self
+    {
+        if (!$this->staff_phone_number->contains($staffPhoneNumber)) {
+            $this->staff_phone_number->add($staffPhoneNumber);
+            $staffPhoneNumber->setStaffProgram($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStaffPhoneNumber(Staff $staffPhoneNumber): self
+    {
+        if ($this->staff_phone_number->removeElement($staffPhoneNumber)) {
+            // set the owning side to null (unless already changed)
+            if ($staffPhoneNumber->getStaffProgram() === $this) {
+                $staffPhoneNumber->setStaffProgram(null);
+            }
+        }
+
+        return $this;
     }
 }

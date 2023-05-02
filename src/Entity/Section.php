@@ -27,10 +27,14 @@ class Section
     #[ORM\OneToMany(mappedBy: 'section', targetEntity: Program::class)]
     private Collection $programs;
 
+    #[ORM\OneToMany(mappedBy: 'staff_faculty', targetEntity: Staff::class)]
+    private Collection $staff;
+
     public function __construct()
     {
         $this->students = new ArrayCollection();
         $this->programs = new ArrayCollection();
+        $this->staff = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -125,5 +129,35 @@ class Section
     public function __toString() 
     {
         return $this->section_name;
+    }
+
+    /**
+     * @return Collection<int, Staff>
+     */
+    public function getStaff(): Collection
+    {
+        return $this->staff;
+    }
+
+    public function addStaff(Staff $staff): self
+    {
+        if (!$this->staff->contains($staff)) {
+            $this->staff->add($staff);
+            $staff->setStaffFaculty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeStaff(Staff $staff): self
+    {
+        if ($this->staff->removeElement($staff)) {
+            // set the owning side to null (unless already changed)
+            if ($staff->getStaffFaculty() === $this) {
+                $staff->setStaffFaculty(null);
+            }
+        }
+
+        return $this;
     }
 }
