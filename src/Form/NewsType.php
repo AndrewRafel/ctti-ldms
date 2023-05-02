@@ -16,7 +16,7 @@ class NewsType extends AbstractType
             ->add('heading')
             ->add('content')
             ->add('date')
-            ->add('submit',SubmitType::class)
+            ->add('submit',SubmitType::class, ['label' => 'Create News',])
         ;
     }
 

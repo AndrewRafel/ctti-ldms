@@ -92,11 +92,12 @@
 			<div class="container-fluid">
 				<div class="courses">
 					<div class="owl-one owl-carousel">
+                      {% for program in programs %}
 						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
 							<div class="img-wrap" itemprop="image"><img src="{{ asset('images/course-pic.jpg') }}" alt="courses picture"></div>
-								<a href="course-listing.php" class="learn-desining-banner" itemprop="name">Computer Studies >>></a>
+								<a href="course-listing.php" class="learn-desining-banner" itemprop="name">{{program.getProgramName}} >>></a>
 							<div class="box-body" itemprop="description">
-								<p>Study the design, development and analysis of software and hardware used to solve problems in a variety of business, scientific and social contexts</p>
+								<p> {{program.getProgramName}}</p>
 								<section itemprop="time">
 									<p><span>Duration:</span> 3 Years</p>
 									<p><span>Class Time:</span> 07:30am-12am / 1pm-5:30pm</p>
@@ -104,45 +105,10 @@
 								</section>
 							</div>
 						</div>
+						{% else %}
 
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="img-wrap"  itemprop="image"><img src="{{ asset('images/course-pic.jpg') }}" alt="courses picture"></div>
-								<a href="course-listing.php" class="learn-desining-banner" itemprop="name">Electrical Engineering >>></a>
-							<div class="box-body" itemprop="description">
-								<p> Acquire skills in the generation, transmission, distribution and utilization of electricity as well as the design of a range of related devices.</p>
-								<section itemprop="time">
-									<p><span>Duration:</span> 2 Years</p>
-									<p><span>Class Time:</span> 07:30am-12am / 1pm-5:30pm</p>
-									<p><span>Fee:</span> 4,000</p>
-								</section>
-							</div>
-						</div>
+						{% endfor %}
 
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="img-wrap"  itemprop="image"><img src="{{ asset('images/course-pic.jpg') }}" alt="courses picture"></div>
-								<a href="course-listing.php" class="learn-desining-banner" itemprop="name">General Agriculture >>></a>
-							<div class="box-body" itemprop="description">
-								<p>Agriculture can totally eradicate poverty and needs vibrant and passionate youths to be part of the sector</p>
-								<section itemprop="time">
-									<p><span>Duration:</span> 2 Years</p>
-									<p><span>Class Time:</span> 07:30am-12am / 1pm-5:30pm</p>
-									<p><span>Fee:</span> 4,000</p>
-								</section>
-							</div>
-						</div>
-
-						<div class="box-wrap" itemprop="event" itemscope itemtype=" http://schema.org/Course">
-							<div class="img-wrap"  itemprop="image"><img src="{{ asset('images/course-pic.jpg') }}" alt="courses picture"></div>
-								<a href="course-listing.php" class="learn-desining-banner" itemprop="name">Automotive Mechanics >>></a>
-							<div class="box-body" itemprop="description">
-								<p>A successful Auto Mechanic will be detail-oriented, have extensive mechanical knowledge and display great physical dexterity.</p>
-								<section itemprop="time">
-									<p><span>Duration:</span> 2 Years</p>
-									<p><span>Class Time:</span>07:30am-12am / 1pm-5:30pm</p>
-									<p><span>Fee:</span> 4,000</p>
-								</section>
-							</div>
-						</div>
 					</div>
 				</div>
 			</div>
@@ -161,23 +127,13 @@
 						<img src="{{ asset('images/back.jpg') }}" alt="event images">
 					</div>
 					<div class="details">
-						<a href=""><h3 itemprop="name">CLOSING OF TEVET INSTITUTIONS</h3></a>
-						<p itemprop="description"> All students not siting for April 2023 examminations will close on the 6th of April.</p>
+						<a href=""><h3 itemprop="name"> </h3>     </a>
+						<p itemprop="description"> 
+						
+						
+						</p>
 
-						<h5 itemprop="startDate"><i class="far fa-clock"></i> Apr 06,2023 </h5>
-						<h5 itemprop="location"><i class="fas fa-map-marker-alt"></i> Chipata Trades Institute</h5>
-					</div>
-				</div>
-
-				<div class="event-wrap">
-					<div class="img-wrap" itemprop="image">
-						<img src="{{ asset('images/back.jpg') }}" alt="event images">
-					</div>
-					<div class="details">
-						<a href=""><h3 itemprop="name">April 2023 EXAMMINATION</h3></a>
-						<p itemprop="description"> TEVETA Examinations will begin on 10th April. </p>
-
-						<h5 itemprop="startDate"><i class="far fa-clock"></i> Apr 10,2023 </h5>
+						<h5 itemprop="startDate"><i class="far fa-clock"></i>       </h5>
 						<h5 itemprop="location"><i class="fas fa-map-marker-alt"></i> Chipata Trades Institute</h5>
 					</div>
 				</div>

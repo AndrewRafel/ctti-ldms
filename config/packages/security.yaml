@@ -24,6 +24,7 @@ security:
                 max_attempts: 3 
             logout:
                 path: app_logout
+             
                 # where to redirect after logout
                 # target: app_any_route
             # activate different ways to authenticate
@@ -31,12 +32,18 @@ security:
 
             # https://symfony.com/doc/current/security/impersonating_user.html
             # switch_user: true
+            remember_me:
+                secret:   '%kernel.secret%' 
+                lifetime: 604800
+                signature_properties: ['password', 'updatedAt']
 
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
                 #{ path: ^/admin, roles: ROLE_ADMIN }
+                
                 #{ path: ^/profile, roles: ROLE_USER }
+                #{ route: 'admin', roles: ROLE_ADMIN }
 
 when@test:
     security:

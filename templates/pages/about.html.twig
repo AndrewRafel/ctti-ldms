@@ -5,10 +5,13 @@
 			<div class="container">
 				<article class="who-we-are">
 					<h2 class="top-heading">who we are</h2>
-					<p style=" text-align: justify;">In the 1970s the Government decided to set up a Trades Training Institute in Chipata, as such it provided land and began construction of the institution along Malawi Road of which only five staff (5) houses had been put up. However, the construction was suspended for many years.  Finally, in 1993, the decision to set up an institution was revisited and later 2 more houses were built. Chipata Trades Training Institute was set up in 1994 by then Ministry of Science, Technology and Vocational Training through Department of Technical Education and Vocational Training.
-                         Since Chipata Trades Training Institute had no premises of its own, it was initially housed at Katopola farm Institute, for eleven (11) years, in the outskirts of Chipata Town.</p>
-
-					<p style=" text-align: justify;">In 2004, the government, through the Ministry of Science, Technology and Vocational Training, provided (HIPC) fund to Chipata Trades Training Institute to purchase the former ESCO Complex in Central Business District of Chipata town.</p>
+				<p style=" text-align: justify;">
+				{% for info in about %}
+				{{info.getHistory}}
+				{% else %}
+				<p style=" text-align: justify;"> Database connection issues</p>
+				{% endfor %}
+				</p>	
 				</article>
 				<div class="our-story">
 					<h2 class="top-heading">our story</h2>
@@ -20,23 +23,40 @@
 				</div>
 			</div>
 		</section>
-
 		<section class="about-upper-section" itemprop="mainContentofPage">
 			<div class="container">
 				<article class="who-we-are">
 					<h2 class="top-heading">Mission Statement</h2>
-					<p style=" text-align: justify;">To provide the highest quality Technical, Vocational and Entrepreneurship Training for integration into the economy to meet the dynamic technological and business needs and offer market driven solutions.</p>
+					<p style=" text-align: justify;">
+					{% for info in about %}
+					{{info.getMissionStatement}}
+					{% else %}
+					<p style=" text-align: justify;"> Database connection issues</p>
+					{% endfor %}
+					</p>
 				</article>
 				<div class="who-we-are">
 				<h2 class="top-heading">Vision</h2>
-				<p style="text-align:justify;">To be the leading training provider of Technical, Vocational and Entrepreneurship skills in Zambia</p>
+				<p style="text-align:justify;">
+				{% for info in about %}
+				{{info.vision}}
+				{% else %}
+				<p style=" text-align: justify;"> Database connection issues</p>
+				{% endfor %}
+				</p>
 				</div>
 			</div>
 		</section>
 
 		<section class="query-section">
 			<div class="container">
-				<p>For more info ask us a question @<a href="+260-977-370-130"><i class="fas fa-phone"></i> +260-977-370-130</a></p>
+				<p>For more info ask us a question @<a href="+260-977-370-130"><i class="fas fa-phone"></i> 
+				{% for info in about %}
+				{{info.getPhoneNumber}}
+				{% else %}
+				<p style=" text-align: justify;"> Database connection issues</p>
+				{% endfor %}
+				</a></p>
 			</div>
 		</section>
 		

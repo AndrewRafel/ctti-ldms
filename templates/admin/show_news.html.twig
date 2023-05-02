@@ -1,0 +1,43 @@
+{% extends 'registration/base.html.twig' %}
+{% block body %}
+{{ include('admin/navigation.html.twig') }}
+<div class="container">
+                    <div class="card shadow mb-4">
+                        <div class="card-header py-3">
+                            <h6 class="m-0 font-weight-bold text-primary">News & Events</h6>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Id</th>
+                                            <th>Headline</th>
+                                            <th>Content</th>
+                                            <th>Date</th>
+                                            <th>Actions</th>
+                                        </tr>
+                                    </thead>
+                                      {% for item in news %}
+                                    <tbody>
+                                        <tr>
+                                            <td>{{item.getId}}</td>
+                                            <td>{{item.heading}}</td>
+                                            <td>{{item.content}}</td>
+                                            <td>{{item.date}}</td>
+                                            <td width="100">
+                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="" data-toggle="modal"  class="btn btn-danger"></a>
+                                            <a rel="tooltip"  title="Edit" id="e<?php echo $id; ?>" href="#edit<?php echo $id; ?>" data-toggle="modal" class="btn btn-success"></a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                      {% else %}
+
+                                     {% endfor %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>              
+
+{% endblock %}
