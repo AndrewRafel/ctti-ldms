@@ -40,8 +40,7 @@
                                             <td>{{student.getStudentGender}}</td>
                                             <td>{{student.getStudentDisability}}</td>
                                             <td width="100">
-                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="" data-toggle="modal"  class="btn btn-danger"></a>
-                                            <a rel="tooltip"  title="Edit" id="e<?php echo $id; ?>" href="#edit<?php echo $id; ?>" data-toggle="modal" class="btn btn-success"></a>
+                                            
                                             </td>
                                         </tr>
                                     </tbody>
@@ -53,5 +52,5 @@
                         </div>
                     </div>
                 </div>              
-
+ {% include'admin/footer.html.twig' %}
 {% endblock %}

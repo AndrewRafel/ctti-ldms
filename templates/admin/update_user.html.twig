@@ -1,7 +1,7 @@
 {% extends 'registration/base.html.twig' %}
- {% block body %}
- {{ include('admin/navigation.html.twig') }}
- <div class="">
+{% block body %}
+{{ include('admin/navigation.html.twig') }}
+   <div class="">
     <div class="container">
         <div class="card o-hidden border-0 shadow-lg my-5">
             <div class="card-body p-0">
@@ -10,26 +10,26 @@
                     <div class="col-lg-7">
                         <div class="p-5">
                             <div class="text-center">
-                                <h1 class="h4 text-gray-900 mb-4">Create A Faculty</h1>
+                                <h1 class="h4 text-gray-900 mb-4">Update User</h1>
                             </div>
                              {% for message in app.flashes('success') %}
                             <div class="alert alert-success">
                                 {{ message }}
                             </div>
                             {% endfor %}
-                            {{ form_start(sectionForm) }}
+                            {{ form_start(userForm) }}
                                 <div class="form-group row">
-                                    <div class="col-sm-6 mb-3 mb-sm-0">
-                                        {{ form_row(sectionForm.section_code) }}    
-                                    </div>
                                     <div class="col-sm-6">
-                                         {{ form_row(sectionForm.section_name) }}
+                                         {{ form_row(userForm.first_name) }}
+                                    </div>
+                                      <div class="col-sm-6">
+                                         {{ form_row(userForm.last_name) }}
                                     </div>
                                 </div>
                                 <a>
-                                  <button type="submit" class="btn">{{form_row(sectionForm.submit)}}</button>
+                                  <button type="submit" class="btn">{{form_row(userForm.Update)}}</button>
                                 </a>
-                             {{ form_end(sectionForm) }}
+                             {{ form_end(userForm) }}
                         </div>
                     </div>
                 </div>
@@ -37,5 +37,6 @@
         </div>
     </div>
 </div>
- {{ include('admin/footer.html.twig') }}
- {% endblock %}
+
+{{ include('admin/footer.html.twig') }}
+{% endblock %}
