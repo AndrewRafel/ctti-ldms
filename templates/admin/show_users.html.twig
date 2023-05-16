@@ -1,5 +1,6 @@
 {% extends 'registration/base.html.twig' %}
 {% block body %}
+{% include'admin/navigation.html.twig' %}
  <div class="container">
                     <div class="card shadow mb-4">
                         <div class="card-header py-3">
@@ -25,10 +26,9 @@
                                             <td>{{user.getEmail}}</td>
                                             <td>{{user.getFirstName}}</td>
                                             <td>{{user.getLastName}}</td>
-                                          
                                             <td width="100">
-                                            <a rel="tooltip"  title="Delete" id="<?php echo $id; ?>"  href="#delete_user<?php echo $id; ?>" data-toggle="modal"  class="btn btn-danger"></a>
-                                            <a rel="tooltip"  title="Edit" id="e<?php echo $id; ?>" href="#edit<?php echo $id; ?>" data-toggle="modal" class="btn btn-success"></a>
+                                            <a title="Delete" href="/admin/delete_user/{{user.getId}}" class="btn btn-danger"></a>
+                                            <a title="Edit" href="/admin/update_user/{{user.getId}}" class="btn btn-success"></a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -40,5 +40,5 @@
                         </div>
                     </div>
                 </div>              
-
+ {% include'admin/footer.html.twig' %}
 {% endblock %}

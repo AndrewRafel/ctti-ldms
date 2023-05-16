@@ -18,8 +18,9 @@ class StudentController extends AbstractController
         $student=new Student();
         $form= $this->createForm(type:StudentType::class,data:$student);
         $form->handleRequest($request);
-        if($form->isSubmitted())
+        if($form->isSubmitted() && $form->isValid())
         {
+            $this->addFlash('success', 'Student Record Created Successfully!');
             $entityManager->persist($student);
             $entityManager->flush();
         }
@@ -33,7 +34,8 @@ class StudentController extends AbstractController
 
         if (!$students) 
         {
-            throw $this->createNotFoundException( 'No students found ' );
+            $error="No Records Found";
+            return $this->render('admin/show_students.html.twig', ['students' => $students, 'message'=>$error,]);
         }
 
         return $this->render('admin/show_students.html.twig', ['students' => $students,]);
