@@ -1,12 +1,11 @@
 <?php
-
 namespace App\Controller;
-
 use App\Entity\News;
 use App\Entity\User;
 use App\Entity\About;
 use App\Entity\Event;
 use App\Entity\Program;
+use App\Entity\Section;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -32,11 +31,11 @@ class MainController extends AbstractController
         $news = $entityManager->getRepository(News::class)->findAll();
         $events = $entityManager->getRepository(Event::class)->findAll();
         $about = $entityManager->getRepository(About::class)->findAll();
-        return $this->render('pages/home.html.twig', ['programs'=>$program,'news'=>$news,'events'=>$events,'about'=>$about]);
+        $sections = $entityManager->getRepository(Section::class)->findAll();
+        return $this->render(
+            'pages/home.html.twig', 
+            ['programs'=>$program, 'sections'=>$sections,'news'=>$news,
+            'events'=>$events,'about'=>$about, 
+            ]);
     }
-
-
-   
-   
-
 }
